@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Form } from './Form';
 import { setUser } from '../store/slices/userSlice';
-import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -21,12 +20,12 @@ const Login = () => {
                 }));
                 navigate("/");
             })
-            .catch(() => alert('Invalid user!'))
+            .catch(() => alert('Такого пользователя не существует'))
     }
 
     return (
         <Form
-            title="sign in"
+            title="войти"
             handleClick={handleLogin}
         />
     )

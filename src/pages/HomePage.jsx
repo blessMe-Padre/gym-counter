@@ -14,7 +14,7 @@ const HomePage = () => {
 
             <button
                 onClick={() => dispatch(removeUser())}
-            >Log out from {email}</button>
+            >Выйти из аккаунта {email}</button>
         </div>
     ) : (
         <Navigate to="/login" />
