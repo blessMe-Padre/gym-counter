@@ -28,5 +28,5 @@ const SignUp = () => {
         />
     )
 }
-
+// 00@gmail.com 123456
 export { SignUp }

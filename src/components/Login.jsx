@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Form } from './Form';
 import { setUser } from '../store/slices/userSlice';
-import { Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleLogin = (email, password) => {
         const auth = getAuth();
@@ -17,7 +19,7 @@ const Login = () => {
                     id: user.uid,
                     token: user.accessToken,
                 }));
-                <Navigate to="/" />
+                navigate("/");
             })
             .catch(() => alert('Invalid user!'))
     }
