@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { ref, set, onValue, getDatabase } from "firebase/database";
+import { ref, set, getDatabase } from "firebase/database";
 import { useAuth } from '../hooks/use-auth'
 
 const Button = styled.button`
@@ -14,24 +14,26 @@ const Button = styled.button`
     border-radius: 4px;
 `;
 
-export default function Counter() {
+export default function Counter(count) {
     const [value, setValue] = useState(0);
     const { id, email } = useAuth();
 
-    console.log(value);
+    // Через пропсы приходит объект, далее код чтобы получить сложение
+    const genegalCount = value + Number(Object.values(count));
+    console.log(genegalCount);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Отправлена форма.');
-        const writeUserData = (value, email) => {
+        const writeUserData = (genegalCount, email) => {
             const db = getDatabase();
             set(ref(db, 'users/user' + id), {
-                counter: value,
+                counter: genegalCount,
                 email: email,
             });
         }
 
-        writeUserData(value, email)
+        writeUserData(genegalCount, email)
     }
     return (
         <>

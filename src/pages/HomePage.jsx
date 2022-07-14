@@ -21,6 +21,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+
 const HomePage = () => {
     const dispatch = useDispatch();
     const { isAuth, email, id } = useAuth();
@@ -35,6 +36,7 @@ const HomePage = () => {
         });
     });
 
+    const number = count;
 
     return isAuth ? (
         <div>
@@ -47,7 +49,7 @@ const HomePage = () => {
 
             <div style={{ backgroundColor: "#44014C", width: "320px", minHeight: "100px" }}>Общее количество подтягиваний {count}</div>
             <div>
-                <Counter />
+                <Counter count={number} />
             </div>
         </div >
     ) : (
