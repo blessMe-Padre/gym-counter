@@ -19,23 +19,24 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 // console.log(database);
 
-// получает значение ключа name
-const db = getDatabase();
-const starCountRef = ref(db, 'users/' + 'name');
-onValue(starCountRef, (snapshot) => {
-    const data = snapshot.val();
-    // console.log(data);
-});
+//получает значение ключа name
+
+// const db = getDatabase();
+// const getUserPath = ref(db, 'users/user' + '/counter');
+// onValue(getUserPath, (snapshot) => {
+//     const data = snapshot.val();
+//     console.log(data);
+// });
 
 
-// получает запись в бд
+// добавляет запись в бд
 
-function writeUserData(name, counter) {
-    const db = getDatabase();
-    set(ref(db, 'users/'), {
-        counter: counter,
-        name: name,
-    });
-}
+// function writeUserData(name, counter) {
+//     const db = getDatabase();
+//     set(ref(db, 'users/'), {
+//         counter: counter,
+//         name: name,
+//     });
+// }
 
 // writeUserData("sergey", 1)
