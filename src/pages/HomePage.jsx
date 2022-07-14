@@ -21,13 +21,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-
 const HomePage = () => {
     const dispatch = useDispatch();
-    const { isAuth, email } = useAuth();
+    const { isAuth, email, id } = useAuth();
 
     const db = getDatabase();
-    const getUserPath = ref(db, 'users/userBtZYmBHh2oT20bOu55NjXmV77O63' + '/counter');
+    const getUserPath = ref(db, 'users/user' + id + '/counter');
     const [count, setState] = useState();
 
     useEffect(() => {
@@ -46,7 +45,7 @@ const HomePage = () => {
             >Выйти из аккаунта {email}</button>
 
 
-            <div style={{ backgroundColor: "#44014C", width: "100px", minHeight: "100px" }}>{count}</div>
+            <div style={{ backgroundColor: "#44014C", width: "320px", minHeight: "100px" }}>Общее количество подтягиваний {count}</div>
             <div>
                 <Counter />
             </div>
