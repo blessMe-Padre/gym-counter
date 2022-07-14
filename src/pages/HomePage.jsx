@@ -5,6 +5,7 @@ import { removeUser } from '../store/slices/userSlice'
 import Counter from '../components/Counter'
 import { ref, set, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
+import { useState, useEffect } from 'react'
 
 
 const firebaseConfig = {
@@ -17,21 +18,22 @@ const firebaseConfig = {
     databaseURL: "https://gym-counter-d161a-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 
-const HomePage = ({ data }) => {
+const HomePage = () => {
     const dispatch = useDispatch();
     const { isAuth, email } = useAuth();
 
     const db = getDatabase();
     const getUserPath = ref(db, 'users/userBtZYmBHh2oT20bOu55NjXmV77O63' + '/counter');
+    const [count, setState] = useState();
 
-    onValue(getUserPath, (snapshot) => {
-        const data = snapshot.val();
-        console.log(data);
+    useEffect(() => {
+        onValue(getUserPath, (snapshot) => {
+            setState(snapshot.val());
+        });
     });
 
 
@@ -44,7 +46,7 @@ const HomePage = ({ data }) => {
             >Выйти из аккаунта {email}</button>
 
 
-            <div style={{ backgroundColor: "#44014C", width: "100px", minHeight: "100px" }}>3434343</div>
+            <div style={{ backgroundColor: "#44014C", width: "100px", minHeight: "100px" }}>{count}</div>
             <div>
                 <Counter />
             </div>
