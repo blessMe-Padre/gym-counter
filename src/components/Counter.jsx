@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { ref, set, getDatabase } from "firebase/database";
-import { useAuth } from '../hooks/use-auth'
+import { useAuth } from '../hooks/use-auth';
 
 const Button = styled.button`
     min-width: 100px;
@@ -18,10 +18,8 @@ export default function Counter(count) {
     const [value, setValue] = useState(0);
     const { id, email } = useAuth();
 
-    // Через пропсы приходит объект, далее код чтобы получить сложение
-    const genegalCount = value + Number(Object.values(count));
-    console.log(genegalCount);
-
+    // Через пропсы приходит объект, далее код чтобы получить сложение, а не конкатенацию
+    const generalCount = value + Number(Object.values(count));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -33,7 +31,7 @@ export default function Counter(count) {
             });
         }
 
-        writeUserData(genegalCount, email)
+        writeUserData(generalCount, email)
     }
     return (
         <>

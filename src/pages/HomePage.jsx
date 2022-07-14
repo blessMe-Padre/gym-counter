@@ -1,11 +1,12 @@
-import { Navigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { useAuth } from '../hooks/use-auth'
-import { removeUser } from '../store/slices/userSlice'
-import Counter from '../components/Counter'
-import { ref, set, onValue, getDatabase } from "firebase/database";
+import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useAuth } from '../hooks/use-auth';
+import { removeUser } from '../store/slices/userSlice';
+import { ref, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+
+import Counter from '../components/Counter'
 
 
 const firebaseConfig = {
