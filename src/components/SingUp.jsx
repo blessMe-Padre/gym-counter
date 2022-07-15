@@ -28,10 +28,10 @@ const SignUp = () => {
                     });
                 }
 
-                writeUserData(25, email)
+                writeUserData(0, email)
                 navigate('/');
             })
-            .catch(() => alert('Ошибка регистрации'))
+            .catch(() => alert('Ошибка регистрации, проверьте email и пароль (должен быть больше 6 символов)'))
     }
 
     return (

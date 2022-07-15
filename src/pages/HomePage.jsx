@@ -64,7 +64,7 @@ const HomePage = () => {
 
         </Container >
     ) : (
-        <Navigate to="/login" />
+        <Navigate to="gym-counter/login" />
     )
 }
 
