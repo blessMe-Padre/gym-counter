@@ -14,7 +14,7 @@ const LoginPage = () => {
                 <h1>Вход в аккаунт</h1>
                 <Login />
                 <p>
-                    Или <StyledLink to="gym-counter/register">Зарегистрируйтесь</StyledLink>
+                    Или <StyledLink to="/register">Зарегистрируйтесь</StyledLink>
                 </p>
             </Wrapper>
         </Container>

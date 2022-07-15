@@ -18,6 +18,11 @@ export const Button = styled.button`
     &:focus {
         background-color: #ABE1EB;
     }
+
+    &:disabled {
+        cursor: auto;
+        opacity: 0.5;
+    }
 `;
 
 export const AccountButton = styled(Button)`
@@ -26,4 +31,8 @@ export const AccountButton = styled(Button)`
     height: 26px;
     padding: 0 10px;
     font-size: 14px;
+`;
+
+export const SendButton = styled(Button)`
+    width: 100%;
 `;

@@ -27,25 +27,27 @@ const Form = ({ title, handleClick }) => {
     const [pass, setPass] = useState('');
 
     return (
-        <StyledForm>
-            <StyledInput
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="email"
-            />
-            <StyledInput
-                type="password"
-                value={pass}
-                onChange={(e) => setPass(e.target.value)}
-                placeholder="password"
-            />
-            <Button
-                onClick={() => handleClick(email, pass)}
-            >
-                {title}
-            </Button>
-        </StyledForm>
+        <>
+            <StyledForm>
+                <StyledInput
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="email"
+                />
+                <StyledInput
+                    type="password"
+                    value={pass}
+                    onChange={(e) => setPass(e.target.value)}
+                    placeholder="password"
+                />
+                <Button
+                    onClick={() => handleClick(email, pass)}
+                >
+                    {title}
+                </Button>
+            </StyledForm>
+        </>
     )
 }
 

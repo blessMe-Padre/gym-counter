@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ref, set, getDatabase } from "firebase/database";
 import { useAuth } from '../hooks/use-auth';
 
-import { Button } from './styled/Buttons'
+import { Button, SendButton } from './styled/Buttons'
 import { CounterValue } from "./styled/CounterValue";
 
 export default function Counter(count) {
@@ -30,7 +30,7 @@ export default function Counter(count) {
             <CounterValue> {value} </CounterValue>
             <Button onClick={() => setValue(Number(value) + 1)}>+</Button>
             <form onSubmit={handleSubmit}>
-                <Button type="submit">Отправить</Button>
+                <SendButton type="submit">Отправить</SendButton>
             </form>
         </>
     );

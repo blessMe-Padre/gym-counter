@@ -29,7 +29,7 @@ const SignUp = () => {
                 }
 
                 writeUserData(0, email)
-                navigate('gym-counter/');
+                navigate('/');
             })
             .catch(() => alert('Ошибка регистрации, проверьте email и пароль (должен быть больше 6 символов)'))
     }
