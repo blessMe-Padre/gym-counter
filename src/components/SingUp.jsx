@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set, onValue } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 import { Form } from './Form';
 import { setUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,7 @@ const SignUp = () => {
                 writeUserData(25, email)
                 navigate('/');
             })
-            .catch(console.error)
+            .catch(() => alert('Ошибка регистрации'))
     }
 
     return (

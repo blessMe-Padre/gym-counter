@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import { ref, set, getDatabase } from "firebase/database";
 import { useAuth } from '../hooks/use-auth';
 
-const Button = styled.button`
-    min-width: 100px;
-    font-size: 18px;
-    text-align: left;
-    background-color: orange;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-`;
+import { Button } from './styled/Buttons'
+import { CounterValue } from "./styled/CounterValue";
 
 export default function Counter(count) {
     const [value, setValue] = useState(0);
@@ -30,16 +21,16 @@ export default function Counter(count) {
                 email: email,
             });
         }
-
-        writeUserData(generalCount, email)
+        writeUserData(generalCount, email);
+        let value = setValue(0);
     }
     return (
         <>
             <Button disabled={value === 0} onClick={() => setValue(value - 1)}>-</Button>
-            <span> {value} </span>
+            <CounterValue> {value} </CounterValue>
             <Button onClick={() => setValue(Number(value) + 1)}>+</Button>
             <form onSubmit={handleSubmit}>
-                <button type="submit">Отправить</button>
+                <Button type="submit">Отправить</Button>
             </form>
         </>
     );

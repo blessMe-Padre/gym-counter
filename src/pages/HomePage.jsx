@@ -6,7 +6,13 @@ import { ref, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { useState, useEffect } from 'react';
 
-import Counter from '../components/Counter'
+import Counter from '../components/Counter';
+import { Container } from '../components/styled/Container';
+import { AccountButton } from '../components/styled/Buttons';
+import { Title } from '../components/styled/Title';
+import { Wrapper } from '../components/styled/PageWrapper';
+import { Count } from '../components/styled/Count';
+
 
 
 const firebaseConfig = {
@@ -40,19 +46,23 @@ const HomePage = () => {
     const number = count;
 
     return isAuth ? (
-        <div>
-            <h1>Welcome</h1>
-
-            <button
+        <Container>
+            <AccountButton
                 onClick={() => dispatch(removeUser())}
-            >Выйти из аккаунта {email}</button>
+            >Выйти из аккаунта {email}</AccountButton>
+            <Wrapper>
+                <Title>Добро пожаловать</Title>
+                <p style={{ maxWidth: "500px" }}>Здесь отображается общее количество подтягиваний.
+                    С помощью кнопок увеличивайте значение счетчика. Фиксируйте значение в базу кнопкой "отправить"</p>
 
+                <p>Общее количество подтягиваний: </p>
+                <Count>{count}</Count>
+                <div>
+                    <Counter count={number} />
+                </div>
+            </Wrapper>
 
-            <div style={{ backgroundColor: "#44014C", width: "320px", minHeight: "100px" }}>Общее количество подтягиваний {count}</div>
-            <div>
-                <Counter count={number} />
-            </div>
-        </div >
+        </Container >
     ) : (
         <Navigate to="/login" />
     )
