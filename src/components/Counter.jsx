@@ -22,7 +22,7 @@ export default function Counter(count) {
             });
         }
         writeUserData(generalCount, email);
-        let value = setValue(0);
+        setValue(0);
     }
     return (
         <>
