@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/blessMe-Padre/gym-counter/static/css/main.46faf526.css",
-    "main.js": "/blessMe-Padre/gym-counter/static/js/main.6ccc290c.js",
-    "static/js/787.a0b1f884.chunk.js": "/blessMe-Padre/gym-counter/static/js/787.a0b1f884.chunk.js",
-    "index.html": "/blessMe-Padre/gym-counter/index.html",
-    "main.46faf526.css.map": "/blessMe-Padre/gym-counter/static/css/main.46faf526.css.map",
-    "main.6ccc290c.js.map": "/blessMe-Padre/gym-counter/static/js/main.6ccc290c.js.map",
-    "787.a0b1f884.chunk.js.map": "/blessMe-Padre/gym-counter/static/js/787.a0b1f884.chunk.js.map"
+    "main.css": "/gym-counter/static/css/main.46faf526.css",
+    "main.js": "/gym-counter/static/js/main.abc84806.js",
+    "static/js/787.a0b1f884.chunk.js": "/gym-counter/static/js/787.a0b1f884.chunk.js",
+    "index.html": "/gym-counter/index.html",
+    "main.46faf526.css.map": "/gym-counter/static/css/main.46faf526.css.map",
+    "main.abc84806.js.map": "/gym-counter/static/js/main.abc84806.js.map",
+    "787.a0b1f884.chunk.js.map": "/gym-counter/static/js/787.a0b1f884.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.46faf526.css",
-    "static/js/main.6ccc290c.js"
+    "static/js/main.abc84806.js"
   ]
 }
