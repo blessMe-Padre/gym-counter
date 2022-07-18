@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/gym-counter/static/css/main.5b30744a.css",
-    "main.js": "/gym-counter/static/js/main.5d5d852d.js",
+    "main.js": "/gym-counter/static/js/main.6fbb8a5a.js",
     "static/js/787.a0b1f884.chunk.js": "/gym-counter/static/js/787.a0b1f884.chunk.js",
     "index.html": "/gym-counter/index.html",
     "main.5b30744a.css.map": "/gym-counter/static/css/main.5b30744a.css.map",
-    "main.5d5d852d.js.map": "/gym-counter/static/js/main.5d5d852d.js.map",
+    "main.6fbb8a5a.js.map": "/gym-counter/static/js/main.6fbb8a5a.js.map",
     "787.a0b1f884.chunk.js.map": "/gym-counter/static/js/787.a0b1f884.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b30744a.css",
-    "static/js/main.5d5d852d.js"
+    "static/js/main.6fbb8a5a.js"
   ]
 }
