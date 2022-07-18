@@ -5,6 +5,7 @@ import { removeUser } from '../store/slices/userSlice';
 import { ref, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { useState, useEffect } from 'react';
+import { CircleProgress } from 'react-gradient-progress'
 
 import Counter from '../components/Counter';
 import { Container } from '../components/styled/Container';
@@ -12,6 +13,7 @@ import { AccountButton } from '../components/styled/Buttons';
 import { Title } from '../components/styled/Title';
 import { Wrapper } from '../components/styled/PageWrapper';
 import { Count } from '../components/styled/Count';
+import { StyledP } from '../components/form/styled';
 
 
 
@@ -44,18 +46,24 @@ const HomePage = () => {
     });
 
     const number = count;
+    const percentage = Math.round(number * 100 / 2000);
 
     return isAuth ? (
         <Container>
             <AccountButton
                 onClick={() => dispatch(removeUser())}
             >Выйти из аккаунта {email}</AccountButton>
+            <div style={{ textAlign: "center" }}>
+                <p>Цель 2000 подтягиваний. Завершено на:</p>
+                <CircleProgress percentage={percentage}
+                    strokeWidth={12}
+                    primaryColor={["#013220", "#66ff00"]}
+                    secondaryColor="#f0f0f0"
+                    fontSize={34}
+                />
+            </div>
             <Wrapper>
-                <Title>Добро пожаловать</Title>
-                <p style={{ maxWidth: "500px" }}>Здесь отображается общее количество подтягиваний.
-                    С помощью кнопок увеличивайте значение счетчика. Фиксируйте значение в базу кнопкой "отправить"</p>
-
-                <p>Общее количество подтягиваний: </p>
+                <p style={{ fontSize: "18px" }}>Общее количество подтягиваний: </p>
                 <Count>{count}</Count>
                 <div>
                     <Counter count={number} />

@@ -17,13 +17,13 @@ const Form = ({ title, handleClick }) => {
         mode: "onBlur"
     });
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-    }
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+    // }
 
     return (
         <>
-            <StyledForm onSubmit={handleSubmit(onSubmit)}>
+            <StyledForm onSubmit={handleSubmit()}>
                 <InputWrapper>
                     <StyledInput
                         type="email"

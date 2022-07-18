@@ -8,7 +8,7 @@ justify-content: center;
 `;
 
 export const StyledInput = styled.input`
-min-width: 250px;
+min-width: 280px;
 padding: 0 10px;
 margin-bottom: 10px;
 height: 36px;
@@ -30,6 +30,7 @@ position: absolute;
 top: 40px;
 left: 0;
 padding-top: 5px;
+font-size: 14px;
 `;
 
 export const StyledP = styled.p`
