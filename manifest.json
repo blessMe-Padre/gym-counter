@@ -18,8 +18,8 @@
             "type": "image/png"
         }
     ],
-    "start_url": "gym-counter/login",
+    "start_url": ".",
     "display": "standalone",
     "theme_color": "#000000",
-    "background_color": "#f0f0f0"
+    "background_color": "#ffffff"
 }
