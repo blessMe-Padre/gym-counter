@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-import { Form } from './Form';
+import { Form } from './form/Form';
 import { setUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 

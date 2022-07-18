@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { setUser } from '../store/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 
-import { Form } from './Form';
+import { Form } from './form/Form';
 
 const Login = () => {
     const dispatch = useDispatch();

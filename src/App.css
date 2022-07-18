@@ -15,4 +15,8 @@
   font-size: 72px;
   margin-bottom: 30px;
   cursor: auto;
+  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
