@@ -10,10 +10,8 @@ import { CircleProgress } from 'react-gradient-progress'
 import Counter from '../components/Counter';
 import { Container } from '../components/styled/Container';
 import { AccountButton } from '../components/styled/Buttons';
-import { Title } from '../components/styled/Title';
 import { Wrapper } from '../components/styled/PageWrapper';
 import { Count } from '../components/styled/Count';
-import { StyledP } from '../components/form/styled';
 
 
 

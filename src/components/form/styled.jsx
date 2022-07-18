@@ -5,14 +5,22 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+
+@media(max-width: 767px) {
+    width: 100%;
+}
 `;
 
 export const StyledInput = styled.input`
-min-width: 280px;
+min-width: 290px;
 padding: 0 10px;
 margin-bottom: 10px;
 height: 36px;
 font-size: 16px;
+
+@media(max-width: 767px) {
+    width: 100%;
+}
 
 &:hover,
 &:focus {

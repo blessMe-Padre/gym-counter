@@ -31,7 +31,7 @@ const Form = ({ title, handleClick }) => {
                             required: "Введите адрес почты",
                             pattern: {
                                 value: /.+@.+\..+/i,
-                                message: 'Email должен быть формата "name@gmail.com"',
+                                message: 'Email должен быть формата name@gmail.com',
                             },
                         })}
                         value={email}
