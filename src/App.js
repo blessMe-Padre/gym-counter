@@ -12,8 +12,8 @@ function App() {
     <>
       <Routes>
         <Route path='gym-counter/' element={<HomePage />} />
-        <Route path='gym-counter/login' element={<LoginPage />} />
-        <Route path='gym-counter/register' element={<Register />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<Register />} />
         <Route path="*" element={<LoginPage />} />
       </Routes>
     </>
