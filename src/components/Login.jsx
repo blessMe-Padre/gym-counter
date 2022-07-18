@@ -18,7 +18,7 @@ const Login = () => {
                     id: user.uid,
                     token: user.accessToken,
                 }));
-                navigate("/");
+                navigate("gym-counter/");
             })
             .catch(() => alert('Такого пользователя не существует'))
     }

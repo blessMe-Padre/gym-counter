@@ -11,7 +11,7 @@ const Register = () => {
                 <h1>Регистрация</h1>
                 <SignUp />
                 <p>
-                    Если у вас уже есть аккаунт <StyledLink to="/login">Вход в аккаунт</StyledLink>
+                    Если у вас уже есть аккаунт <StyledLink to="gym-counter/login">Вход в аккаунт</StyledLink>
                 </p>
             </Wrapper>
         </Container>
