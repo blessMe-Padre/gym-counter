@@ -13,7 +13,6 @@ const SignUp = () => {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-                console.log(user);
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,
@@ -29,6 +28,7 @@ const SignUp = () => {
                 }
 
                 writeUserData(0, email)
+                alert('Регистрация прошла успешно, теперь войдите в аккаунт')
                 navigate("gym-counter/");
             })
             .catch(() => alert('Пользователь с такой почтой уже зарегистрирован'))
