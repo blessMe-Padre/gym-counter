@@ -11,7 +11,7 @@ const Form = ({ title, handleClick }) => {
 
     const {
         register,
-        formState: { errors, isValid },
+        formState: { errors },
         handleSubmit,
     } = useForm({
         mode: "onBlur"
@@ -63,7 +63,6 @@ const Form = ({ title, handleClick }) => {
                 </InputWrapper>
                 <Button
                     type='submit'
-                    disabled={!isValid}
                     onClick={() => handleClick(email, pass)}
                 >
                     {title}
