@@ -63,7 +63,7 @@ const HomePage = () => {
                 onClick={() => dispatch(removeUser())}
             >Выйти из аккаунта {email}</AccountButton>
             <div style={{ textAlign: "center" }}>
-                <p>Цель 2000 подтягиваний. Завершено на:</p>
+                <p style={{ marginTop: "50px" }}>Цель 2000 подтягиваний. Завершено на:</p>
                 <CircleProgress percentage={percentage}
                     strokeWidth={12}
                     primaryColor={["#013220", "#66ff00"]}
