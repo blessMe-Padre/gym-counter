@@ -35,16 +35,27 @@ const HomePage = () => {
 
     const db = getDatabase();
     const getUserPath = ref(db, 'users/user' + id + '/counter');
-    const [count, setState] = useState();
 
+    const [count, setState] = useState();
     useEffect(() => {
         onValue(getUserPath, (snapshot) => {
             setState(snapshot.val());
         });
     });
 
-    const number = count;
-    const percentage = Math.round(number * 100 / 2000);
+
+    const [percentage, setPercentage] = useState(null);
+
+    const number = Number(count);
+    useEffect(() => {
+        if (percentage === null) {
+            setPercentage(0)
+        } else {
+            setPercentage(Math.round(number * 100 / 2000));
+        }
+
+    }, [number]);
+
 
     return isAuth ? (
         <Container>
