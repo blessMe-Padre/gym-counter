@@ -17,10 +17,6 @@ const Form = ({ title, handleClick }) => {
         mode: "onBlur"
     });
 
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-    // }
-
     return (
         <>
             <StyledForm onSubmit={handleSubmit()}>

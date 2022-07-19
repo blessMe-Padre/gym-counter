@@ -12,7 +12,6 @@ export const Button = styled.button`
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 30px;
 
     &:hover,
     &:focus {

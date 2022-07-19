@@ -4,6 +4,7 @@ import { useAuth } from '../hooks/use-auth';
 
 import { Button, SendButton } from './styled/Buttons'
 import { CounterValue } from "./styled/CounterValue";
+import { CounterInner } from "./styled/CounterInner";
 
 export default function Counter(count) {
     const [value, setValue] = useState(0);
@@ -26,9 +27,11 @@ export default function Counter(count) {
     }
     return (
         <>
-            <Button disabled={value === 0} onClick={() => setValue(value - 1)}>-</Button>
-            <CounterValue> {value} </CounterValue>
-            <Button onClick={() => setValue(Number(value) + 1)}>+</Button>
+            <CounterInner>
+                <Button disabled={value === 0} onClick={() => setValue(value - 1)}>-</Button>
+                <CounterValue> {value} </CounterValue>
+                <Button onClick={() => setValue(Number(value) + 1)}>+</Button>
+            </CounterInner>
             <form onSubmit={handleSubmit}>
                 <SendButton type="submit">Отправить</SendButton>
             </form>

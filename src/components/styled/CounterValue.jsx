@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
-export const CounterValue = styled.p`
-    display: inline-block;
-    padding: 0 20px;
+export const CounterValue = styled.span`
+    padding: 0 10px ;
     margin: 0;
     font-size: 36px;
-    margin-bottom: 30px;
+    width: 80px;
 `;
