@@ -63,7 +63,7 @@ const HomePage = () => {
             <AccountButton
                 onClick={() => dispatch(removeUser())}
             >Выйти из аккаунта {email}</AccountButton>
-            <div style={{ textAlign: "center" }}>
+            <div style={{ textAlign: "center", fontSize: "26px" }}>
                 <p style={{ marginTop: "50px" }}>Цель 2000 подтягиваний. Завершено на:</p>
                 {
                     isLoading ?
@@ -71,7 +71,6 @@ const HomePage = () => {
                             strokeWidth={12}
                             primaryColor={["#013220", "#66ff00"]}
                             secondaryColor="#f0f0f0"
-                            fontSize={'34'}
                         />
                         :
                         <div style={{ height: "200px", paddingTop: "20px", }}>
