@@ -29,19 +29,25 @@ const HomePage = () => {
     const dispatch = useDispatch();
     const { isAuth, email, id } = useAuth();
 
+    // получение ссылки к базе данных
     const database = getDatabase(app);
     const getUserPath = ref(database, 'users/user' + id + '/counter');
 
+    // установка и состояние Spinner
+    const [isLoading, setLoading] = useState(false);
+
+    // состояние счетчика
     const [count, setState] = useState();
+
     useEffect(() => {
         onValue(getUserPath, (snapshot) => {
             setState(snapshot.val());
+            setLoading(true);
         });
     });
 
-
+    // установка состояния и отображение % в circle bar
     const [percentage, setPercentage] = useState(1);
-
     const number = Number(count);
     useEffect(() => {
         if (percentage === 1) {
@@ -49,7 +55,6 @@ const HomePage = () => {
         } else {
             setPercentage(Math.round(number * 100 / 2000));
         }
-
     }, [number]);
 
 
@@ -60,16 +65,30 @@ const HomePage = () => {
             >Выйти из аккаунта {email}</AccountButton>
             <div style={{ textAlign: "center" }}>
                 <p style={{ marginTop: "50px" }}>Цель 2000 подтягиваний. Завершено на:</p>
-                <CircleProgress percentage={percentage}
-                    strokeWidth={12}
-                    primaryColor={["#013220", "#66ff00"]}
-                    secondaryColor="#f0f0f0"
-                    fontSize={'34'}
-                />
+                {
+                    isLoading ?
+                        <CircleProgress percentage={percentage}
+                            strokeWidth={12}
+                            primaryColor={["#013220", "#66ff00"]}
+                            secondaryColor="#f0f0f0"
+                            fontSize={'34'}
+                        />
+                        :
+                        <div style={{ height: "200px", paddingTop: "20px", }}>
+                            <img style={{ height: "100px" }} src="img/spinner-2.gif" alt="spinner" />
+                        </div>
+                }
+
             </div>
             <Wrapper>
                 <p style={{ fontSize: "18px" }}>Общее количество подтягиваний: </p>
-                <Count>{count}</Count>
+                {
+                    isLoading ? <Count>{count}</Count> :
+                        <div style={{ height: "117px" }}>
+                            <img style={{ height: "80px" }} src="img/spinner-2.gif" alt="spinner" />
+                        </div>
+                }
+
                 <div>
                     <Counter count={number} />
                 </div>
