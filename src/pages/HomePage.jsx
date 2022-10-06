@@ -44,11 +44,11 @@ const HomePage = () => {
     });
 
 
-    const [percentage, setPercentage] = useState(null);
+    const [percentage, setPercentage] = useState(1);
 
     const number = Number(count);
     useEffect(() => {
-        if (percentage === null) {
+        if (percentage === 1) {
             setPercentage(0)
         } else {
             setPercentage(Math.round(number * 100 / 2000));
@@ -68,7 +68,7 @@ const HomePage = () => {
                     strokeWidth={12}
                     primaryColor={["#013220", "#66ff00"]}
                     secondaryColor="#f0f0f0"
-                    fontSize={34}
+                    fontSize={'34'}
                 />
             </div>
             <Wrapper>

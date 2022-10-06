@@ -15,10 +15,10 @@ export default function Counter(count) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const writeUserData = (genegalCount, email) => {
+        const writeUserData = (generalCount, email) => {
             const db = getDatabase();
             set(ref(db, 'users/user' + id), {
-                counter: genegalCount,
+                counter: generalCount,
                 email: email,
             });
         }
