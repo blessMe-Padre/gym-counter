@@ -13,8 +13,6 @@ import { AccountButton } from '../components/styled/Buttons';
 import { Wrapper } from '../components/styled/PageWrapper';
 import { Count } from '../components/styled/Count';
 
-
-
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -26,15 +24,13 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
-
 
 const HomePage = () => {
     const dispatch = useDispatch();
     const { isAuth, email, id } = useAuth();
 
-    const db = getDatabase();
-    const getUserPath = ref(db, 'users/user' + id + '/counter');
+    const database = getDatabase(app);
+    const getUserPath = ref(database, 'users/user' + id + '/counter');
 
     const [count, setState] = useState();
     useEffect(() => {
