@@ -16,3 +16,10 @@ body {
 form {
   text-align: center;
 }
+
+.test {
+  background-color: blueviolet;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
