@@ -5,12 +5,14 @@ import styled from "styled-components";
 // `;
 
 export const Tab = styled.div`
-    opacity: ${(p) => (p.active ? "1" : "0")};
-    height: ${(p) => (p.active ? "100%" : "2px")};
+    position: ${(p) => (p.active ? "absolute" : "static")};
+    width: ${(p) => (p.active ? "1px" : "100%")};
+    height: ${(p) => (p.active ? "1px" : "670px")};
+    overflow: ${(p) => (p.active ? "hidden" : "visible")};
 `;
 
 export const TabButtonsInner = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

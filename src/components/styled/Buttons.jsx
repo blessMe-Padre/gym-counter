@@ -26,7 +26,7 @@ export const Button = styled.button`
 `;
 
 export const AccountButton = styled(Button)`
-    margin-top: 40px;
+    margin-top: 15px;
     cursor: pointer;
     height: 26px;
     padding: 0 10px;
@@ -35,4 +35,26 @@ export const AccountButton = styled(Button)`
 
 export const SendButton = styled(Button)`
     width: 100%;
+`;
+
+export const TabButton = styled.button`
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    height: 100px;
+    transition: transform 0.3s ease;
+    margin: 0 40px;
+
+    &:hover,
+    &:focus {
+        transform: scale(1.1);
+    }
+
+    &:disabled {
+        cursor: auto;
+        opacity: 0.5;
+    }
 `;

@@ -10,7 +10,7 @@ import { CircleProgress } from 'react-gradient-progress'
 import Counter from '../components/Counter';
 import CounterSquat from '../components/CounterSquat';
 import { Container } from '../components/styled/Container';
-import { AccountButton } from '../components/styled/Buttons';
+import { AccountButton, TabButton } from '../components/styled/Buttons';
 import { Count } from '../components/styled/Count';
 import { Tab, TabButtonsInner } from '../components/styled/Tab';
 import { Wrapper } from '../components/styled/PageWrapper';
@@ -97,7 +97,7 @@ const HomePage = () => {
             <Tab active={activeTab === 1}>
                 <Wrapper>
                     <div style={{ textAlign: "center", fontSize: "26px" }}>
-                        <p style={{ marginTop: "50px" }}>Цель 2000 подтягиваний. Завершено на:</p>
+                        <p style={{ marginTop: "20px" }}>Цель 2000 подтягиваний. Завершено на:</p>
                         {
                             isLoading ?
                                 <CircleProgress percentage={percentage}
@@ -128,7 +128,7 @@ const HomePage = () => {
             <Tab active={activeTab === 2}>
                 <Wrapper>
                     <div style={{ textAlign: "center", fontSize: "26px" }}>
-                        <p style={{ marginTop: "50px" }}>Цель 1000 приседаний. Завершено на:</p>
+                        <p style={{ marginTop: "20px" }}>Цель 1000 приседаний. Завершено на:</p>
                         {
                             isLoading ?
                                 <CircleProgress
@@ -158,8 +158,12 @@ const HomePage = () => {
                 </Wrapper>
             </Tab>
             <TabButtonsInner>
-                <button onClick={() => toggleTab(1)}>кнопка 1</button>
-                <button onClick={() => toggleTab(2)}>кнопка 2</button>
+                <TabButton onClick={() => toggleTab(1)}>
+                    <img src="img/icons-pull.png" alt="icons-pull" />
+                </TabButton>
+                <TabButton onClick={() => toggleTab(2)}>
+                    <img src="img/icons-squat.png" alt="icons-squat" />
+                </TabButton>
             </TabButtonsInner>
 
         </Container >
