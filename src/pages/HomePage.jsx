@@ -93,11 +93,10 @@ const HomePage = () => {
                 onClick={() => dispatch(removeUser())}
             >Выйти из аккаунта {email}
             </AccountButton>
-
             <Tab active={activeTab === 1}>
                 <Wrapper>
                     <div style={{ textAlign: "center", fontSize: "26px" }}>
-                        <p style={{ marginTop: "20px" }}>Цель 2000 подтягиваний. Завершено на:</p>
+                        <p style={{ marginTop: "20px" }}>Цель 2000 приседаний. Завершено на:</p>
                         {
                             isLoading ?
                                 <CircleProgress percentage={percentage}
@@ -111,7 +110,7 @@ const HomePage = () => {
                                 </div>
                         }
                     </div>
-                    <p style={{ fontSize: "18px" }}>Общее количество подтягиваний: </p>
+                    <p style={{ fontSize: "18px" }}>Общее количество приседаний: </p>
                     {
                         isLoading ? <Count>{count}</Count> :
                             <div style={{ height: "117px" }}>
@@ -128,7 +127,7 @@ const HomePage = () => {
             <Tab active={activeTab === 2}>
                 <Wrapper>
                     <div style={{ textAlign: "center", fontSize: "26px" }}>
-                        <p style={{ marginTop: "20px" }}>Цель 1000 приседаний. Завершено на:</p>
+                        <p style={{ marginTop: "20px" }}>Цель 2000 подтягиваний. Завершено на:</p>
                         {
                             isLoading ?
                                 <CircleProgress
@@ -144,7 +143,7 @@ const HomePage = () => {
                         }
                     </div>
 
-                    <p style={{ fontSize: "18px" }}>Общее количество приседаний: </p>
+                    <p style={{ fontSize: "18px" }}>Общее количество подтягиваний: </p>
                     {
                         isLoading ? <Count>{squat}</Count> :
                             <div style={{ height: "117px" }}>
