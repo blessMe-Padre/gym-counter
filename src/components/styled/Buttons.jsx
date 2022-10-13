@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import imgPull from "../../components/img/icons-pull.png";
+import imgSquat from "../../components/img/icons-squat.png";
 
 export const Button = styled.button`
     min-width: 120px;
@@ -45,8 +47,18 @@ export const TabButton = styled.button`
     color: inherit;
     background-color: transparent;
     height: 100px;
+    width: 100px;
     transition: transform 0.3s ease;
     margin: 0 40px;
+    background-image: url(${imgPull});
+    background-position: center;
+    background-size: contain;
+    object-fit: cover;
+
+    @media(max-width: 450px) {
+        height: 80px;
+        width: 80px;
+    }
 
     &:hover,
     &:focus {
@@ -58,3 +70,7 @@ export const TabButton = styled.button`
         opacity: 0.5;
     }
 `;
+
+export const TabButtonSquat = styled(TabButton)`
+    background-image: url(${imgSquat});
+`

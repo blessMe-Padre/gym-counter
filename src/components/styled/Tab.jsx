@@ -7,7 +7,7 @@ import styled from "styled-components";
 export const Tab = styled.div`
     position: ${(p) => (p.active ? "absolute" : "static")};
     width: ${(p) => (p.active ? "1px" : "100%")};
-    height: ${(p) => (p.active ? "1px" : "670px")};
+    height: ${(p) => (p.active ? "1px" : "660px")};
     overflow: ${(p) => (p.active ? "hidden" : "visible")};
 `;
 

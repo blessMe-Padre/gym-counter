@@ -10,7 +10,7 @@ import { CircleProgress } from 'react-gradient-progress'
 import Counter from '../components/Counter';
 import CounterSquat from '../components/CounterSquat';
 import { Container } from '../components/styled/Container';
-import { AccountButton, TabButton } from '../components/styled/Buttons';
+import { AccountButton, TabButton, TabButtonSquat } from '../components/styled/Buttons';
 import { Count } from '../components/styled/Count';
 import { Tab, TabButtonsInner } from '../components/styled/Tab';
 import { Wrapper } from '../components/styled/PageWrapper';
@@ -83,7 +83,7 @@ const HomePage = () => {
         if (percentage2 === 1) {
             setPercentage2(0)
         } else {
-            setPercentage2(Math.round(numberSquat * 100 / 1000));
+            setPercentage2(Math.round(numberSquat * 100 / 2000));
         }
     }, [numberSquat]);
 
@@ -114,7 +114,7 @@ const HomePage = () => {
                     {
                         isLoading ? <Count>{count}</Count> :
                             <div style={{ height: "117px" }}>
-                                <img style={{ height: "80px" }} src="img/spinner-2.gif" alt="spinner" />
+                                <img style={{ height: "80px", width: "80px" }} src="img/spinner-2.gif" alt="spinner" />
                             </div>
                     }
                     <div>
@@ -138,7 +138,7 @@ const HomePage = () => {
                                 />
                                 :
                                 <div style={{ height: "200px", paddingTop: "20px", }}>
-                                    <img style={{ height: "100px" }} src="img/spinner-2.gif" alt="spinner" />
+                                    <img style={{ height: "100px", width: "80px" }} src="img/spinner-2.gif" alt="spinner" />
                                 </div>
                         }
                     </div>
@@ -157,12 +157,8 @@ const HomePage = () => {
                 </Wrapper>
             </Tab>
             <TabButtonsInner>
-                <TabButton onClick={() => toggleTab(1)}>
-                    <img src="img/icons-pull.png" alt="icons-pull" />
-                </TabButton>
-                <TabButton onClick={() => toggleTab(2)}>
-                    <img src="img/icons-squat.png" alt="icons-squat" />
-                </TabButton>
+                <TabButton onClick={() => toggleTab(1)} />
+                <TabButtonSquat onClick={() => toggleTab(2)} />
             </TabButtonsInner>
 
         </Container >
