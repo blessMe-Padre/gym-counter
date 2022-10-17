@@ -19,15 +19,16 @@ const SignUp = () => {
                     token: user.accessToken,
                 }));
 
-                const writeUserData = (counter, email) => {
+                const writeUserData = (counter, squat, email) => {
                     const db = getDatabase();
                     set(ref(db, 'users/user' + user.uid), {
                         counter: counter,
                         email: email,
+                        squat: squat,
                     });
                 }
 
-                writeUserData(0, email)
+                writeUserData(0, 0, email)
                 alert('Регистрация прошла успешно, теперь войдите в аккаунт')
                 navigate("gym-counter/");
             })
