@@ -33,7 +33,7 @@ export default function CounterSquat({ count, squat }) {
                 <Button onClick={() => setValue(Number(value) + 1)}>+</Button>
             </CounterInner>
             <form onSubmit={handleSubmit}>
-                <SendButton type="submit">Отправить</SendButton>
+                <SendButton disabled={value === 0} type="submit">Отправить</SendButton>
             </form>
         </>
     );

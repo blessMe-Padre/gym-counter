@@ -16,7 +16,6 @@ import { Tab, TabButtonsInner } from '../components/styled/Tab';
 import { Wrapper } from '../components/styled/PageWrapper';
 
 
-
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
