@@ -74,3 +74,16 @@ export const TabButton = styled.button`
 export const TabButtonSquat = styled(TabButton)`
     background-image: url(${imgSquat});
 `
+
+export const NavButton = styled.button`
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1;
+`

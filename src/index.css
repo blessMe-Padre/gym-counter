@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+  overflow: hidden;
+}
 body {
   margin: 0;
   padding: 0;
@@ -8,9 +12,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #282c34;
   color: aliceblue;
-  transition: all 0.3s ease;
   text-decoration: none;
   height: 100%;
+  overflow: hidden;
 }
 
 form {
@@ -25,6 +29,7 @@ img {
 
 .test {
   position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -32,4 +37,9 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  background-color: #fff;
+  transition: transform 0.4s ease-in;
 }

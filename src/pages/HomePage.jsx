@@ -1,7 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../hooks/use-auth';
-import { removeUser } from '../store/slices/userSlice';
 import { ref, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { useState, useEffect } from 'react';
@@ -10,10 +9,11 @@ import { CircleProgress } from 'react-gradient-progress'
 import Counter from '../components/Counter';
 import CounterSquat from '../components/CounterSquat';
 import { Container } from '../components/styled/Container';
-import { AccountButton, TabButton, TabButtonSquat } from '../components/styled/Buttons';
+import { NavButton, TabButton, TabButtonSquat } from '../components/styled/Buttons';
 import { Count } from '../components/styled/Count';
 import { Tab, TabButtonsInner } from '../components/styled/Tab';
 import { Wrapper } from '../components/styled/PageWrapper';
+import Menu from '../components/Menu/Menu';
 
 
 const firebaseConfig = {
@@ -36,6 +36,9 @@ const HomePage = () => {
     const database = getDatabase(app);
     const getUserPath = ref(database, 'users/user' + id + '/counter');
     const getUserPathSquat = ref(database, 'users/user' + id + '/squat');
+
+    // установка и состояние меню
+    const [menuActive, setMenuActive] = useState(false);
 
     // установка и состояние Spinner
     const [isLoading, setLoading] = useState(false);
@@ -88,10 +91,17 @@ const HomePage = () => {
 
     return isAuth ? (
         <Container>
-            <AccountButton
-                onClick={() => dispatch(removeUser())}
-            >Выйти из аккаунта {email}
-            </AccountButton>
+            <nav>
+                <NavButton onClick={() => setMenuActive(!menuActive)}>
+                    {menuActive ?
+                        <img src="img/gear-black.svg" alt="spinner" />
+                        :
+                        <img src="img/gear-white.svg" alt="spinner" />
+                    }
+
+                </NavButton>
+            </nav>
+
             <Tab active={activeTab === 1}>
                 <Wrapper>
                     <div style={{ textAlign: "center", fontSize: "26px" }}>
@@ -160,6 +170,7 @@ const HomePage = () => {
                 <TabButtonSquat onClick={() => toggleTab(2)} />
             </TabButtonsInner>
 
+            <Menu active={menuActive} setActive={setMenuActive} email={email} />
         </Container >
     ) : (
         <Navigate to="gym-counter/login" />
