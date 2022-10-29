@@ -1,6 +1,5 @@
 html {
   height: 100%;
-  overflow: hidden;
 }
 body {
   margin: 0;
@@ -15,9 +14,6 @@ body {
   text-decoration: none;
   height: 100%;
   box-sizing: border-box;
-  display: block;
-  position: relative;
-  overflow: hidden;
 }
 
 form {
