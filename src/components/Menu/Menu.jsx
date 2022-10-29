@@ -16,7 +16,6 @@ export default function Menu({ active, setActive, email }) {
                 >Выйти из аккаунта {email}
                 </AccountButton>
             </MenuBody>
-
         </Wrapper>
     )
 }

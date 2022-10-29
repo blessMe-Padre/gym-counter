@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/use-auth';
 import { Button, SendButton } from './styled/Buttons'
 import { CounterValue } from "./styled/CounterValue";
 import { CounterInner } from "./styled/CounterInner";
+import { CounterForm } from "./styled/CounterForm";
 
 export default function CounterSquat({ count, squat }) {
     const [value, setValue] = useState(0);
@@ -32,9 +33,10 @@ export default function CounterSquat({ count, squat }) {
                 <CounterValue> {value} </CounterValue>
                 <Button onClick={() => setValue(Number(value) + 1)}>+</Button>
             </CounterInner>
-            <form onSubmit={handleSubmit}>
+
+            <CounterForm onSubmit={handleSubmit}>
                 <SendButton disabled={value === 0} type="submit">Отправить</SendButton>
-            </form>
+            </CounterForm>
         </>
     );
 }

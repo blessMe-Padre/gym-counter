@@ -11,8 +11,7 @@ import CounterSquat from '../components/CounterSquat';
 import { Container } from '../components/styled/Container';
 import { NavButton, TabButton, TabButtonSquat } from '../components/styled/Buttons';
 import { Count } from '../components/styled/Count';
-import { Tab, TabButtonsInner } from '../components/styled/Tab';
-import { Wrapper } from '../components/styled/PageWrapper';
+import { Tab, TabButtonsInner, TabTitle, TabWrapper } from '../components/styled/Tab';
 import Menu from '../components/Menu/Menu';
 
 
@@ -103,9 +102,9 @@ const HomePage = () => {
             </nav>
 
             <Tab active={activeTab === 1}>
-                <Wrapper>
-                    <div style={{ textAlign: "center", fontSize: "26px" }}>
-                        <p style={{ marginTop: "20px" }}>Цель 2000 приседаний. Завершено на:</p>
+                <TabWrapper>
+                    <div>
+                        <TabTitle>Цель 2000 приседаний. Завершено на:</TabTitle>
                         {
                             isLoading ?
                                 <CircleProgress percentage={percentage}
@@ -126,17 +125,17 @@ const HomePage = () => {
                                 <img style={{ height: "80px", width: "80px" }} src="img/spinner-2.gif" alt="spinner" />
                             </div>
                     }
-                    <div>
-                        <Counter count={count} squat={squat} />
-                    </div>
-                </Wrapper>
+
+                    <Counter count={count} squat={squat} />
+
+                </TabWrapper>
             </Tab>
 
 
             <Tab active={activeTab === 2}>
-                <Wrapper>
-                    <div style={{ textAlign: "center", fontSize: "26px" }}>
-                        <p style={{ marginTop: "20px" }}>Цель 2000 подтягиваний. Завершено на:</p>
+                <TabWrapper>
+                    <div>
+                        <TabTitle>Цель 2000 подтягиваний. Завершено на:</TabTitle>
                         {
                             isLoading ?
                                 <CircleProgress
@@ -160,11 +159,11 @@ const HomePage = () => {
                             </div>
                     }
 
-                    <div>
-                        <CounterSquat squat={squat} count={count} />
-                    </div>
-                </Wrapper>
+
+                    <CounterSquat squat={squat} count={count} />
+                </TabWrapper>
             </Tab>
+
             <TabButtonsInner>
                 <TabButton onClick={() => toggleTab(1)} />
                 <TabButtonSquat onClick={() => toggleTab(2)} />

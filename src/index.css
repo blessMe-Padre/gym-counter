@@ -14,6 +14,9 @@ body {
   color: aliceblue;
   text-decoration: none;
   height: 100%;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
   overflow: hidden;
 }
 
@@ -42,4 +45,7 @@ img {
   background: transparent;
   background-color: #fff;
   transition: transform 0.4s ease-in;
+  text-align: left;
+  font-size: 26px;
+  margin: 0;
 }

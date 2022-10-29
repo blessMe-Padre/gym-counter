@@ -8,19 +8,19 @@ const breatheAnimation = keyframes`
 
 export const Wrapper = styled.div`
     position: absolute;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(50deg, #4b79cf, #4bc5cf);
-    background-size: 300% 300%;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(50deg, #4b79cf, #4bc5cf);
+    background-size: 300%;
     transition: transform 0.3s ease-in;
-    transform: translate(${(p) => (p.active ? "0" : "100%")}, 0);
+    transform: translateX(${(p) => (p.active ? "0" : "100%")});
     animation: ${breatheAnimation} 10s ease infinite;
 `;
 
 export const MenuBody = styled.div`
     padding: 70px 15px;
     color: #2e3346;
-
 `;

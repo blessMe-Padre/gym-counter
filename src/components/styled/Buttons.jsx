@@ -3,7 +3,8 @@ import imgPull from "../../components/img/icons-pull.png";
 import imgSquat from "../../components/img/icons-squat.png";
 
 export const Button = styled.button`
-    min-width: 120px;
+    display: block;
+    width: 100%;
     font-size: 18px;
     text-align: left;
     background-color: #9BD3DD;
@@ -53,6 +54,7 @@ export const TabButton = styled.button`
     background-image: url(${imgPull});
     background-position: center;
     background-size: contain;
+    background-repeat: no-repeat;
     object-fit: cover;
 
     @media(max-width: 450px) {
@@ -78,7 +80,7 @@ export const TabButtonSquat = styled(TabButton)`
 export const NavButton = styled.button`
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 10px;
     padding: 0;
     border: none;
     background: transparent;
