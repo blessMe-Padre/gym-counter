@@ -1,5 +1,4 @@
 import { Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useAuth } from '../hooks/use-auth';
 import { ref, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
@@ -11,7 +10,7 @@ import CounterSquat from '../components/CounterSquat';
 import { Container } from '../components/styled/Container';
 import { NavButton, TabButton, TabButtonSquat } from '../components/styled/Buttons';
 import { Count } from '../components/styled/Count';
-import { Tab, TabButtonsInner, TabTitle, TabWrapper } from '../components/styled/Tab';
+import { Tab, TabButtonsInner, TabText, TabTitle, TabWrapper } from '../components/styled/Tab';
 import Menu from '../components/Menu/Menu';
 
 
@@ -28,7 +27,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const HomePage = () => {
-    const dispatch = useDispatch();
     const { isAuth, email, id } = useAuth();
 
     // получение ссылки к базе данных
@@ -118,7 +116,8 @@ const HomePage = () => {
                                 </div>
                         }
                     </div>
-                    <p style={{ fontSize: "18px" }}>Общее количество приседаний: </p>
+                    <TabText>Общее количество приседаний:</TabText>
+
                     {
                         isLoading ? <Count>{count}</Count> :
                             <div style={{ height: "117px" }}>
@@ -151,7 +150,7 @@ const HomePage = () => {
                         }
                     </div>
 
-                    <p style={{ fontSize: "18px" }}>Общее количество подтягиваний: </p>
+                    <TabText>Общее количество приседаний:</TabText>
                     {
                         isLoading ? <Count>{squat}</Count> :
                             <div style={{ height: "117px" }}>
@@ -170,6 +169,7 @@ const HomePage = () => {
             </TabButtonsInner>
 
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
+
         </Container >
     ) : (
         <Navigate to="gym-counter/login" />

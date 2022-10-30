@@ -25,10 +25,15 @@ export const TabWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 24px;
 `;
 
 export const TabTitle = styled.p`
     text-align: left;
-    font-size: 24px;
     margin: 10px 0 0 0;
+`;
+
+export const TabText = styled.p`
+    font-size: 18px;
+    margin: 0 0 25px 0;
 `;
