@@ -32,12 +32,14 @@ const HomePage = () => {
     // получает текущий месяц в виде цифры
     const currentMonth = new Date().getMonth() + 1;
 
-
     // получение ссылки к базе данных
     const database = getDatabase(app);
+
     const getUserPath = ref(database, 'users/user' + id + '/general/counter');
     const getUserPathMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/counter');
+
     const getUserPathSquat = ref(database, 'users/user' + id + '/general/squat');
+    const getUserPathSquatMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/squat');
 
     // установка и состояние меню
     const [menuActive, setMenuActive] = useState(false);
@@ -75,6 +77,15 @@ const HomePage = () => {
     useEffect(() => {
         onValue(getUserPathSquat, (snapshot) => {
             setSquat(snapshot.val());
+            setLoading(true);
+        });
+    });
+
+    // состояние счетчика приседаний на Месяц
+    const [squatMonth, setSquatMonth] = useState();
+    useEffect(() => {
+        onValue(getUserPathSquatMonth, (snapshot) => {
+            setSquatMonth(snapshot.val());
             setLoading(true);
         });
     });
@@ -120,7 +131,7 @@ const HomePage = () => {
                         <TabTitle>Цель 2000 приседаний. Завершено на:</TabTitle>
                         {
                             isLoading ?
-                                <CircleProgress percentage={percentage}
+                                <CircleProgress percentage={percentage2}
                                     strokeWidth={12}
                                     primaryColor={["#013220", "#66ff00"]}
                                     secondaryColor="#f0f0f0"
@@ -140,7 +151,7 @@ const HomePage = () => {
                             </div>
                     }
 
-                    <CounterSquat squat={squat} count={count} />
+                    <CounterSquat squat={squat} count={count} squatMonth={squatMonth} currentMonth={currentMonth} />
 
                 </TabWrapper>
             </Tab>
@@ -153,7 +164,7 @@ const HomePage = () => {
                         {
                             isLoading ?
                                 <CircleProgress
-                                    percentage={percentage2}
+                                    percentage={percentage}
                                     strokeWidth={12}
                                     primaryColor={["#013220", "#66ff00"]}
                                     secondaryColor="#f0f0f0"
@@ -187,7 +198,7 @@ const HomePage = () => {
                 <TabButtonSquat onClick={() => toggleTab(2)} />
             </TabButtonsInner>
             <div>
-                Март 2023г | Подтягиваний: {countMonth}
+                Март 2023г | Подтягиваний: {countMonth} приседаний : {squatMonth}
             </div>
 
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
