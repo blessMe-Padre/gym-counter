@@ -29,11 +29,15 @@ const app = initializeApp(firebaseConfig);
 const HomePage = () => {
     const { isAuth, email, id } = useAuth();
 
+    // получает текущий месяц в виде цифры
+    const currentMonth = new Date().getMonth() + 1;
+
+
     // получение ссылки к базе данных
     const database = getDatabase(app);
-    const getUserPath = ref(database, 'users/user' + id + '/counter');
-    const getUserPathMonth = ref(database, 'users/user' + id + '/month/counter');
-    const getUserPathSquat = ref(database, 'users/user' + id + '/squat');
+    const getUserPath = ref(database, 'users/user' + id + '/general/counter');
+    const getUserPathMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/counter');
+    const getUserPathSquat = ref(database, 'users/user' + id + '/general/squat');
 
     // установка и состояние меню
     const [menuActive, setMenuActive] = useState(false);
@@ -169,7 +173,11 @@ const HomePage = () => {
                             </div>
                     }
 
-                    <Counter count={count} squat={squat} />
+                    <Counter
+                        count={count}
+                        squat={squat}
+                        countMonth={countMonth}
+                        currentMonth={currentMonth} />
 
                 </TabWrapper>
             </Tab>
@@ -178,8 +186,9 @@ const HomePage = () => {
                 <TabButton onClick={() => toggleTab(1)} />
                 <TabButtonSquat onClick={() => toggleTab(2)} />
             </TabButtonsInner>
-
-            Март 2023г {countMonth}
+            <div>
+                Март 2023г | Подтягиваний: {countMonth}
+            </div>
 
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
 
