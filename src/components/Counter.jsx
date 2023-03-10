@@ -24,6 +24,12 @@ export default function Counter({ count, squat }) {
                 squat: squat,
                 email: email,
             });
+
+            set(ref(db, 'users/user' + id + '/month'), {
+                counter: generalCount,
+                squat: squat,
+                email: email,
+            });
         }
         writeUserDataPullUp(generalCount, squat, email);
         setValue(0);

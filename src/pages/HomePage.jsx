@@ -32,6 +32,7 @@ const HomePage = () => {
     // получение ссылки к базе данных
     const database = getDatabase(app);
     const getUserPath = ref(database, 'users/user' + id + '/counter');
+    const getUserPathMonth = ref(database, 'users/user' + id + '/month/counter');
     const getUserPathSquat = ref(database, 'users/user' + id + '/squat');
 
     // установка и состояние меню
@@ -46,7 +47,7 @@ const HomePage = () => {
         setActiveTab(index)
     }
 
-    // состояние счетчика
+    // состояние счетчика подтягиваний
     const [count, setCount] = useState();
     useEffect(() => {
         onValue(getUserPath, (snapshot) => {
@@ -54,6 +55,16 @@ const HomePage = () => {
             setLoading(true);
         });
     });
+
+    // состояние счетчика подтягиваний на Месяц
+    const [countMonth, setCountMonth] = useState();
+    useEffect(() => {
+        onValue(getUserPathMonth, (snapshot) => {
+            setCountMonth(snapshot.val());
+            setLoading(true);
+        });
+    });
+
 
     // состояние счетчика приседаний
     const [squat, setSquat] = useState();
@@ -119,7 +130,7 @@ const HomePage = () => {
                     <TabText>Общее количество приседаний:</TabText>
 
                     {
-                        isLoading ? <Count>{count}</Count> :
+                        isLoading ? <Count>{squat}</Count> :
                             <div style={{ height: "117px" }}>
                                 <img style={{ height: "80px", width: "80px" }} src="img/spinner-2.gif" alt="spinner" />
                             </div>
@@ -152,7 +163,7 @@ const HomePage = () => {
 
                     <TabText>Общее количество подтягиваний:</TabText>
                     {
-                        isLoading ? <Count>{squat}</Count> :
+                        isLoading ? <Count>{count}</Count> :
                             <div style={{ height: "117px" }}>
                                 <img style={{ height: "80px" }} src="img/spinner-2.gif" alt="spinner" />
                             </div>
@@ -167,6 +178,8 @@ const HomePage = () => {
                 <TabButton onClick={() => toggleTab(1)} />
                 <TabButtonSquat onClick={() => toggleTab(2)} />
             </TabButtonsInner>
+
+            Март 2023г {countMonth}
 
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
 
