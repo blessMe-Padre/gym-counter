@@ -8,17 +8,18 @@ import { CounterInner } from "./styled/CounterInner";
 // import Congrats from "./Congrats";
 import { CounterForm } from "./styled/CounterForm";
 
-export default function Counter({ count, squat, countMonth, currentMonth }) {
+export default function Counter({ count, squat, countMonth, squatMonth, currentMonth }) {
     const [value, setValue] = useState(0);
     // const [congrats, setCongrats] = useState(false);
     const { id, email } = useAuth();
 
     const generalCount = value + count;
     const generalCountMonth = value + countMonth;
+    const squatAtMonth = squatMonth;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const writeUserDataPullUp = (generalCount, generalCountMonth, squat, email) => {
+        const writeUserDataPullUp = (generalCount, generalCountMonth, squat, squatAtMonth, email) => {
             const db = getDatabase();
             set(ref(db, 'users/user' + id + '/general'), {
                 counter: generalCount,
@@ -28,10 +29,10 @@ export default function Counter({ count, squat, countMonth, currentMonth }) {
 
             set(ref(db, 'users/user' + id + '/' + currentMonth), {
                 counter: generalCountMonth,
-                squat: squat,
+                squat: squatAtMonth,
             });
         }
-        writeUserDataPullUp(generalCount, generalCountMonth, squat, email);
+        writeUserDataPullUp(generalCount, generalCountMonth, squat, squatAtMonth, email);
         setValue(0);
         // setCongrats(true);
         // setTimeout(() => {

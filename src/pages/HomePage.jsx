@@ -151,7 +151,7 @@ const HomePage = () => {
                             </div>
                     }
 
-                    <CounterSquat squat={squat} count={count} squatMonth={squatMonth} currentMonth={currentMonth} />
+                    <CounterSquat squat={squat} count={count} squatMonth={squatMonth} countMonth={countMonth} currentMonth={currentMonth} />
 
                 </TabWrapper>
             </Tab>
@@ -188,7 +188,8 @@ const HomePage = () => {
                         count={count}
                         squat={squat}
                         countMonth={countMonth}
-                        currentMonth={currentMonth} />
+                        currentMonth={currentMonth}
+                        squatMonth={squatMonth} />
 
                 </TabWrapper>
             </Tab>
