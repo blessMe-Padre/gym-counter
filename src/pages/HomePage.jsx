@@ -125,7 +125,7 @@ const HomePage = () => {
                             </div>
                     }
 
-                    <Counter count={count} squat={squat} />
+                    <CounterSquat squat={squat} count={count} />
 
                 </TabWrapper>
             </Tab>
@@ -150,7 +150,7 @@ const HomePage = () => {
                         }
                     </div>
 
-                    <TabText>Общее количество приседаний:</TabText>
+                    <TabText>Общее количество подтягиваний:</TabText>
                     {
                         isLoading ? <Count>{squat}</Count> :
                             <div style={{ height: "117px" }}>
@@ -158,8 +158,8 @@ const HomePage = () => {
                             </div>
                     }
 
+                    <Counter count={count} squat={squat} />
 
-                    <CounterSquat squat={squat} count={count} />
                 </TabWrapper>
             </Tab>
 
