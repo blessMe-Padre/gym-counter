@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
 
 import { ref, onValue, getDatabase } from "firebase/database";
-import { initializeApp } from "firebase/app";
+import { app } from '../firebaseConfig';
 
 import { CircleProgress } from 'react-gradient-progress';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,20 +17,6 @@ import { Count } from '../components/styled/Count';
 import { Tab, TabButtonsInner, TabText, TabTitle, TabWrapper } from '../components/styled/Tab';
 import Menu from '../components/Menu/Menu';
 
-
-
-
-const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    databaseURL: "https://gym-counter-d161a-default-rtdb.europe-west1.firebasedatabase.app/",
-};
-
-const app = initializeApp(firebaseConfig);
 
 const HomePage = () => {
     const { isAuth, email, id } = useAuth();
@@ -221,10 +207,10 @@ const HomePage = () => {
             </TabButtonsInner>
 
 
-            {/* Март 2023г | Подтягиваний: {countMonth} приседаний : {squatMonth} */}
             <div>
-                {list.map(list => <div key={uuidv4()}>{list.month} {list.counter} {list.squat}</div>)}
+                {list.map(list => <div key={uuidv4()}>{list.month} | подтягиваний: {list.counter} приседаний: {list.squat}</div>)}
             </div>
+
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
 
         </Container >
