@@ -3,7 +3,9 @@ import { useAuth } from '../hooks/use-auth';
 import { ref, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { useState, useEffect } from 'react';
-import { CircleProgress } from 'react-gradient-progress'
+import { CircleProgress } from 'react-gradient-progress';
+import { v4 as uuidv4 } from 'uuid';
+import { convertToArray } from '../utils';
 
 import Counter from '../components/Counter';
 import CounterSquat from '../components/CounterSquat';
@@ -12,6 +14,8 @@ import { NavButton, TabButton, TabButtonSquat } from '../components/styled/Butto
 import { Count } from '../components/styled/Count';
 import { Tab, TabButtonsInner, TabText, TabTitle, TabWrapper } from '../components/styled/Tab';
 import Menu from '../components/Menu/Menu';
+
+
 
 
 const firebaseConfig = {
@@ -40,6 +44,19 @@ const HomePage = () => {
 
     const getUserPathSquat = ref(database, 'users/user' + id + '/general/squat');
     const getUserPathSquatMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/squat');
+
+
+    const getUserList = ref(database, 'users/user' + id + '/');
+
+    // получение всех повторений на Месяц
+    const [list, setList] = useState([]);
+    useEffect(() => {
+        onValue(getUserList, (snapshot) => {
+            const listsArray = convertToArray(snapshot.val());
+            setList(listsArray);
+        });
+    }, []);
+
 
     // установка и состояние меню
     const [menuActive, setMenuActive] = useState(false);
@@ -198,8 +215,11 @@ const HomePage = () => {
                 <TabButton onClick={() => toggleTab(1)} />
                 <TabButtonSquat onClick={() => toggleTab(2)} />
             </TabButtonsInner>
+
+
+            {/* Март 2023г | Подтягиваний: {countMonth} приседаний : {squatMonth} */}
             <div>
-                Март 2023г | Подтягиваний: {countMonth} приседаний : {squatMonth}
+                {list.map(list => <div key={uuidv4()}>{list.counter} {list.squat}</div>)}
             </div>
 
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
