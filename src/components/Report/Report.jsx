@@ -8,14 +8,17 @@ import { ReportLi, ReportWrapper, Span, Title } from './styled';
 export default function Report({ list }) {
     return (
         <Ul>
-            {list.map(list =>
-                <ReportLi key={uuidv4()}>
-                    <Title>{list.month}</Title>
-                    <ReportWrapper>
-                        <div>подтягиваний: <Span>{list.counter}</Span></div>
-                        <div>приседаний: <Span>{list.squat}</Span></div>
-                    </ReportWrapper>
-                </ReportLi>)}
+            {list
+                .sort((a, b) => a.id < b.id ? 1 : -1)
+                .map(list =>
+                    <ReportLi key={uuidv4()}>
+                        <Title>{list.month}</Title>
+                        <ReportWrapper>
+                            <div>подтягиваний: <Span>{list.counter}</Span></div>
+                            <div>приседаний: <Span>{list.squat}</Span></div>
+                        </ReportWrapper>
+                    </ReportLi>)
+            }
         </Ul>
     )
 }
