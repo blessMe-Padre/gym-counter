@@ -9,7 +9,7 @@ export const Tab = styled.div`
     width: ${(p) => (p.active ? "1px" : "100%")};
     height: ${(p) => (p.active ? "1px" : "100%")};
     overflow: ${(p) => (p.active ? "hidden" : "visible")};
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 `;
 
 export const TabButtonsInner = styled.div`

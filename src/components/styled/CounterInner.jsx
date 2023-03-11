@@ -5,5 +5,5 @@ export const CounterInner = styled.div`
     display: flex;
     flex: 1 1 auto;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 `;

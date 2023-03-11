@@ -4,6 +4,7 @@ html {
 
 :root {
 
+  --fs-esm: 12px;
   --fs-sm: 16px;
   --fs-md: 18px;
   --fs-lg: 24px;
@@ -55,17 +56,25 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
+
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   justify-content: space-between;
-  padding: 0;
+
   border: none;
   background: transparent;
   background-color: #fff;
   transition: transform 0.4s ease-in;
   text-align: left;
   font-size: 26px;
+  opacity: 0.8;
+
+
+  padding: 0;
   margin: 0;
+  list-style: none;
+  margin-bottom: 15px;
+
 }

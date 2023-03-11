@@ -6,7 +6,6 @@ import { ref, onValue, getDatabase } from "firebase/database";
 import { app } from '../firebaseConfig';
 
 import { CircleProgress } from 'react-gradient-progress';
-import { v4 as uuidv4 } from 'uuid';
 import { convertToArray, month } from '../utils';
 
 import Counter from '../components/Counter';
@@ -16,6 +15,7 @@ import { NavButton, TabButton, TabButtonSquat } from '../components/styled/Butto
 import { Count } from '../components/styled/Count';
 import { Tab, TabButtonsInner, TabText, TabTitle, TabWrapper } from '../components/styled/Tab';
 import Menu from '../components/Menu/Menu';
+import Report from '../components/Report/Report';
 
 
 const HomePage = () => {
@@ -36,7 +36,7 @@ const HomePage = () => {
 
     const getUserList = ref(database, 'users/user' + id + '/');
 
-    // получение всех повторений на Месяц
+    // получение всех повторений за Месяц
     const [list, setList] = useState([]);
     useEffect(() => {
         onValue(getUserList, (snapshot) => {
@@ -44,9 +44,6 @@ const HomePage = () => {
             setList(listsArray);
         });
     }, []);
-
-    console.log(list);
-
 
     // установка и состояние меню
     const [menuActive, setMenuActive] = useState(false);
@@ -77,7 +74,6 @@ const HomePage = () => {
             setLoading(true);
         });
     });
-
 
     // состояние счетчика приседаний
     const [squat, setSquat] = useState();
@@ -207,9 +203,7 @@ const HomePage = () => {
             </TabButtonsInner>
 
 
-            <div>
-                {list.map(list => <div key={uuidv4()}>{list.month} | подтягиваний: {list.counter} приседаний: {list.squat}</div>)}
-            </div>
+            <Report list={list} />
 
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
 
