@@ -1,11 +1,13 @@
+import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/use-auth';
+
 import { ref, onValue, getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
-import { useState, useEffect } from 'react';
+
 import { CircleProgress } from 'react-gradient-progress';
 import { v4 as uuidv4 } from 'uuid';
-import { convertToArray } from '../utils';
+import { convertToArray, month } from '../utils';
 
 import Counter from '../components/Counter';
 import CounterSquat from '../components/CounterSquat';
@@ -52,10 +54,12 @@ const HomePage = () => {
     const [list, setList] = useState([]);
     useEffect(() => {
         onValue(getUserList, (snapshot) => {
-            const listsArray = convertToArray(snapshot.val());
+            const listsArray = convertToArray(snapshot.val(), month);
             setList(listsArray);
         });
     }, []);
+
+    console.log(list);
 
 
     // установка и состояние меню
@@ -219,9 +223,8 @@ const HomePage = () => {
 
             {/* Март 2023г | Подтягиваний: {countMonth} приседаний : {squatMonth} */}
             <div>
-                {list.map(list => <div key={uuidv4()}>{list.counter} {list.squat}</div>)}
+                {list.map(list => <div key={uuidv4()}>{list.month} {list.counter} {list.squat}</div>)}
             </div>
-
             <Menu active={menuActive} setActive={setMenuActive} email={email} />
 
         </Container >
