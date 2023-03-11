@@ -45,6 +45,8 @@ const HomePage = () => {
         });
     }, []);
 
+    console.log(list);
+
     // установка и состояние меню
     const [menuActive, setMenuActive] = useState(false);
 

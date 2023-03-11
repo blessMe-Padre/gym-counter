@@ -9,6 +9,9 @@ const SignUp = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // получает текущий месяц в виде цифры
+    const currentMonth = new Date().getMonth() + 1;
+
     const handleRegister = (email, password) => {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
@@ -21,10 +24,16 @@ const SignUp = () => {
 
                 const writeUserData = (counter, squat, email) => {
                     const db = getDatabase();
-                    set(ref(db, 'users/user' + user.uid), {
+                    set(ref(db, 'users/user' + user.uid + '/general'), {
                         counter: counter,
                         email: email,
                         squat: squat,
+                    });
+
+
+                    set(ref(db, 'users/user' + user.uid + '/' + currentMonth), {
+                        counter: counter,
+                        squat: counter,
                     });
                 }
 
