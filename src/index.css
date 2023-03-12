@@ -17,11 +17,13 @@ html {
 body[data-theme="dark"] {
   --colors-text: var(--color-aliceblue);
   --colors-bg: var(--color-shark);
+  --colors-btn: var(--color-aliceblue);
 }
 
 body[data-theme="light"] {
   --colors-text: var(--color-shark);
   --colors-bg: var(--color-aliceblue);
+  --colors-btn: var(--color-shark);
 }
 
 body {

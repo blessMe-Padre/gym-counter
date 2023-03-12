@@ -9,7 +9,7 @@ import { MenuBody, Wrapper } from './styled';
 import { AccountButton } from '../styled/Buttons';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 
-export default function Menu({ active, setTarget, email, id, target }) {
+export default function Menu({ active, setTarget, email, id }) {
     const dispatch = useDispatch();
 
     // установка и состояние темы

@@ -60,12 +60,6 @@ const HomePage = () => {
     // установка и состояние Spinner
     const [isLoading, setLoading] = useState(false);
 
-    // установка активного Tab
-    const [activeTab, setActiveTab] = useState(1);
-    const toggleTab = (index) => {
-        setActiveTab(index)
-    }
-
     // состояние счетчика подтягиваний
     const [count, setCount] = useState();
     useEffect(() => {
@@ -123,6 +117,14 @@ const HomePage = () => {
             setPercentage2(Math.round(numberSquat * 100 / target));
         }
     }, [numberSquat]);
+
+    // установка активного Tab
+    const [activeTab, setActiveTab] = useState(1);
+    const [activeButton, setActiveButton] = useState(1);
+    const toggleTab = (index) => {
+        setActiveTab(index);
+        setActiveButton(index)
+    }
 
     return isAuth ? (
         <Container>
@@ -207,8 +209,10 @@ const HomePage = () => {
             </Tab>
 
             <TabButtonsInner>
-                <TabButton onClick={() => toggleTab(1)} />
-                <TabButtonSquat onClick={() => toggleTab(2)} />
+                <TabButton active={activeButton === 1}
+                    onClick={() => toggleTab(1)} />
+                <TabButtonSquat active={activeButton === 2}
+                    onClick={() => toggleTab(2)} />
             </TabButtonsInner>
 
             <Report list={list} />

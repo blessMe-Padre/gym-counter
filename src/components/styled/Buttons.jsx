@@ -42,7 +42,7 @@ export const SendButton = styled(Button)`
 `;
 
 export const TabButton = styled.button`
-    padding: 0;
+    padding: 5px;
     border: none;
     cursor: pointer;
     font: inherit;
@@ -53,19 +53,18 @@ export const TabButton = styled.button`
     transition: transform 0.3s ease;
     margin: 0 40px;
     background-image: url(${imgPull});
+    background-size: 80%;
     background-position: center;
-    background-size: contain;
     background-repeat: no-repeat;
     object-fit: cover;
+    border-radius: 5px;
+
+    transform: ${(p) => (p.active ? "scale(1.2)" : "scale(1)")};
+    border: ${(p) => (p.active ? "1px solid var(--colors-btn)" : "")};
 
     @media(max-width: 450px) {
         height: 80px;
         width: 80px;
-    }
-
-    &:hover,
-    &:focus {
-        transform: scale(1.3);
     }
 
     &:disabled {
