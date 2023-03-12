@@ -15,9 +15,11 @@ const month = [
     { 12: 'Декабрь 2023 г' },
 ];
 
+// функция преобразовывает объект в массив исключая ключи general и target
 function convertToArray(obj, month) {
     return Object.keys(obj).filter(function (key) {
-        return key !== 'general';
+        return key !== 'general' && key !== 'target';
+
     }).map(function (key) {
         const monthItem = month.find(item => item.hasOwnProperty(key));
         const monthName = monthItem ? monthItem[key] : '';

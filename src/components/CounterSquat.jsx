@@ -28,7 +28,6 @@ export default function CounterSquat({ count, squat, squatMonth, countMonth, cur
             set(ref(db, 'users/user' + id + '/' + currentMonth), {
                 counter: countAtMonth,
                 squat: generalSquatMonth,
-                email: email,
             });
         }
         writeUserDataSquat(generalSquat, generalSquatMonth, count, countAtMonth, email);

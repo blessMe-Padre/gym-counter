@@ -22,7 +22,7 @@ const SignUp = () => {
                     token: user.accessToken,
                 }));
 
-                const writeUserData = (counter, squat, email) => {
+                const writeUserData = (counter, squat, email, target) => {
                     const db = getDatabase();
                     set(ref(db, 'users/user' + user.uid + '/general'), {
                         counter: counter,
@@ -30,14 +30,17 @@ const SignUp = () => {
                         squat: squat,
                     });
 
-
                     set(ref(db, 'users/user' + user.uid + '/' + currentMonth), {
                         counter: counter,
                         squat: counter,
                     });
+
+                    set(ref(db, 'users/user' + user.uid + '/target'), {
+                        target: target,
+                    });
                 }
 
-                writeUserData(0, 0, email)
+                writeUserData(0, 0, email, 2000)
                 alert('Регистрация прошла успешно, теперь войдите в аккаунт')
                 navigate("gym-counter/");
             })

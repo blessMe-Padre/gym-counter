@@ -34,6 +34,7 @@ export const AccountButton = styled(Button)`
     height: 26px;
     padding: 0 10px;
     font-size: 14px;
+    color: black;
 `;
 
 export const SendButton = styled(Button)`

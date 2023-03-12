@@ -28,13 +28,22 @@ const HomePage = () => {
     const database = getDatabase(app);
 
     const getUserPath = ref(database, 'users/user' + id + '/general/counter');
+    const getUserPathTarget = ref(database, 'users/user' + id + '/target/target');
     const getUserPathMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/counter');
 
     const getUserPathSquat = ref(database, 'users/user' + id + '/general/squat');
     const getUserPathSquatMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/squat');
 
-
     const getUserList = ref(database, 'users/user' + id + '/');
+
+    // получение и установка Цель
+    const [target, setTarget] = useState(0);
+
+    useEffect(() => {
+        onValue(getUserPathTarget, (snapshot) => {
+            setTarget(snapshot.val());
+        });
+    }, []);
 
     // получение всех повторений за Месяц
     const [list, setList] = useState([]);
@@ -44,8 +53,6 @@ const HomePage = () => {
             setList(listsArray);
         });
     }, []);
-
-    console.log(list);
 
     // установка и состояние меню
     const [menuActive, setMenuActive] = useState(false);
@@ -102,7 +109,7 @@ const HomePage = () => {
         if (percentage === 1) {
             setPercentage(0)
         } else {
-            setPercentage(Math.round(numberCount * 100 / 2000));
+            setPercentage(Math.round(numberCount * 100 / target));
         }
     }, [numberCount]);
 
@@ -113,7 +120,7 @@ const HomePage = () => {
         if (percentage2 === 1) {
             setPercentage2(0)
         } else {
-            setPercentage2(Math.round(numberSquat * 100 / 2000));
+            setPercentage2(Math.round(numberSquat * 100 / target));
         }
     }, [numberSquat]);
 
@@ -133,7 +140,7 @@ const HomePage = () => {
             <Tab active={activeTab === 1}>
                 <TabWrapper>
                     <div>
-                        <TabTitle>Цель 2000 приседаний. Завершено на:</TabTitle>
+                        <TabTitle>Цель {target} приседаний. Завершено на:</TabTitle>
                         {
                             isLoading ?
                                 <CircleProgress percentage={percentage2}
@@ -165,7 +172,7 @@ const HomePage = () => {
             <Tab active={activeTab === 2}>
                 <TabWrapper>
                     <div>
-                        <TabTitle>Цель 2000 подтягиваний. Завершено на:</TabTitle>
+                        <TabTitle>Цель {target} подтягиваний. Завершено на:</TabTitle>
                         {
                             isLoading ?
                                 <CircleProgress
@@ -204,10 +211,17 @@ const HomePage = () => {
                 <TabButtonSquat onClick={() => toggleTab(2)} />
             </TabButtonsInner>
 
-
             <Report list={list} />
 
-            <Menu active={menuActive} setActive={setMenuActive} email={email} />
+            <Menu
+                id={id}
+                active={menuActive}
+                setActive={setMenuActive}
+                email={email}
+                target={target}
+                setTarget={setTarget}
+                squat={squat}
+            />
 
         </Container >
     ) : (
