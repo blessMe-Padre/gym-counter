@@ -41,9 +41,9 @@ const HomePage = () => {
 
     useEffect(() => {
         onValue(getUserPathTarget, (snapshot) => {
-            setTarget(snapshot.val());
+            setTarget(+snapshot.val());
         });
-    }, []);
+    }, [getUserPathTarget]);
 
     // получение всех повторений за Месяц
     const [list, setList] = useState([]);
@@ -74,7 +74,7 @@ const HomePage = () => {
     useEffect(() => {
         onValue(getUserPathMonth, (snapshot) => {
             setCountMonth(snapshot.val());
-            setLoading(true);
+            // setLoading(true);
         });
     });
 
@@ -92,7 +92,7 @@ const HomePage = () => {
     useEffect(() => {
         onValue(getUserPathSquatMonth, (snapshot) => {
             setSquatMonth(snapshot.val());
-            setLoading(true);
+            // setLoading(true);
         });
     });
 
