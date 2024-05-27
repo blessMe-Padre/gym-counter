@@ -47,9 +47,11 @@ const HomePage = () => {
 
     // получение всех повторений за Месяц
     const [list, setList] = useState([]);
+
     useEffect(() => {
         onValue(getUserList, (snapshot) => {
             const listsArray = convertToArray(snapshot.val(), month);
+            console.log(listsArray);
             setList(listsArray);
         });
     }, []);
