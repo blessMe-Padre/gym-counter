@@ -8,8 +8,6 @@ Web приложение на React с авторизацией пользова
 html, css, react, redux/toolkit, styled components, react-router-dom v.6, firebase auth,  firebase database, redux-persist
 
 
-## Available Scripts
-In the project directory, you can run:
 ### `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

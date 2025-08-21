@@ -5,4 +5,5 @@ export const Ul = styled.ul`
     padding: 0;
     list-style: none;
     width: 100%;
+    margin-top: 50px;
 `;

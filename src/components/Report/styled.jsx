@@ -17,6 +17,10 @@ export const Title = styled.h3`
 `;
 
 export const Span = styled.span`
-    font-size: var(--fs-lg);
     margin: 0 0 0 10px;
+`;
+
+export const Text = styled.p`
+   margin: 0;
+   padding: 0;
 `;

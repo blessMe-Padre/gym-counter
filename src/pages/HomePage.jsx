@@ -9,11 +9,10 @@ import { CircleProgress } from 'react-gradient-progress';
 import { convertToArray, month } from '../utils';
 
 import Counter from '../components/Counter';
-import CounterSquat from '../components/CounterSquat';
 import { Container } from '../components/styled/Container';
-import { NavButton, TabButton, TabButtonSquat } from '../components/styled/Buttons';
+import { NavButton} from '../components/styled/Buttons';
 import { Count } from '../components/styled/Count';
-import { Tab, TabButtonsInner, TabText, TabTitle, TabWrapper } from '../components/styled/Tab';
+import { TabText, TabTitle, TabWrapper } from '../components/styled/Tab';
 import Menu from '../components/Menu/Menu';
 import Report from '../components/Report/Report';
 
@@ -27,31 +26,27 @@ const HomePage = () => {
     // получение ссылки к базе данных
     const database = getDatabase(app);
 
+    // получение ссылок к базе данных
     const getUserPath = ref(database, 'users/user' + id + '/general/counter');
     const getUserPathTarget = ref(database, 'users/user' + id + '/target/target');
     const getUserPathMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/counter');
-
-    const getUserPathSquat = ref(database, 'users/user' + id + '/general/squat');
-    const getUserPathSquatMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/squat');
-
     const getUserList = ref(database, 'users/user' + id + '/');
 
     // получение и установка Цель
     const [target, setTarget] = useState(0);
 
+    // получение и установка Цель
     useEffect(() => {
         onValue(getUserPathTarget, (snapshot) => {
             setTarget(+snapshot.val());
         });
     }, [getUserPathTarget]);
 
-    // получение всех повторений за Месяц
+    // получение и установка всех повторений за Месяц
     const [list, setList] = useState([]);
-
     useEffect(() => {
         onValue(getUserList, (snapshot) => {
             const listsArray = convertToArray(snapshot.val(), month);
-            console.log(listsArray);
             setList(listsArray);
         });
     }, []);
@@ -76,25 +71,6 @@ const HomePage = () => {
     useEffect(() => {
         onValue(getUserPathMonth, (snapshot) => {
             setCountMonth(snapshot.val());
-            // setLoading(true);
-        });
-    });
-
-    // состояние счетчика приседаний
-    const [squat, setSquat] = useState();
-    useEffect(() => {
-        onValue(getUserPathSquat, (snapshot) => {
-            setSquat(snapshot.val());
-            setLoading(true);
-        });
-    });
-
-    // состояние счетчика приседаний на Месяц
-    const [squatMonth, setSquatMonth] = useState();
-    useEffect(() => {
-        onValue(getUserPathSquatMonth, (snapshot) => {
-            setSquatMonth(snapshot.val());
-            // setLoading(true);
         });
     });
 
@@ -107,26 +83,7 @@ const HomePage = () => {
         } else {
             setPercentage(Math.round(numberCount * 100 / target));
         }
-    }, [numberCount]);
-
-    // установка состояния и отображение % в circle bar второго таба
-    const [percentage2, setPercentage2] = useState(1);
-    const numberSquat = Number(squat);
-    useEffect(() => {
-        if (percentage2 === 1) {
-            setPercentage2(0)
-        } else {
-            setPercentage2(Math.round(numberSquat * 100 / target));
-        }
-    }, [numberSquat]);
-
-    // установка активного Tab
-    const [activeTab, setActiveTab] = useState(1);
-    const [activeButton, setActiveButton] = useState(1);
-    const toggleTab = (index) => {
-        setActiveTab(index);
-        setActiveButton(index)
-    }
+    }, []);
 
     return isAuth ? (
         <Container>
@@ -141,39 +98,7 @@ const HomePage = () => {
                 </NavButton>
             </nav>
 
-            <Tab active={activeTab === 1}>
-                <TabWrapper>
-                    <div>
-                        <TabTitle>Цель {target} приседаний. Завершено на:</TabTitle>
-                        {
-                            isLoading ?
-                                <CircleProgress percentage={percentage2}
-                                    strokeWidth={12}
-                                    primaryColor={["#013220", "#66ff00"]}
-                                    secondaryColor="#f0f0f0"
-                                />
-                                :
-                                <div style={{ height: "200px", paddingTop: "20px", }}>
-                                    <img style={{ height: "100px" }} src="img/spinner-2.gif" alt="spinner" />
-                                </div>
-                        }
-                    </div>
-                    <TabText>Общее количество приседаний:</TabText>
-
-                    {
-                        isLoading ? <Count>{squat}</Count> :
-                            <div style={{ height: "117px" }}>
-                                <img style={{ height: "80px", width: "80px" }} src="img/spinner-2.gif" alt="spinner" />
-                            </div>
-                    }
-
-                    <CounterSquat squat={squat} count={count} squatMonth={squatMonth} countMonth={countMonth} currentMonth={currentMonth} />
-
-                </TabWrapper>
-            </Tab>
-
-
-            <Tab active={activeTab === 2}>
+            <div>
                 <TabWrapper>
                     <div>
                         <TabTitle>Цель {target} подтягиваний. Завершено на:</TabTitle>
@@ -202,20 +127,12 @@ const HomePage = () => {
 
                     <Counter
                         count={count}
-                        squat={squat}
                         countMonth={countMonth}
                         currentMonth={currentMonth}
-                        squatMonth={squatMonth} />
+                    />
 
                 </TabWrapper>
-            </Tab>
-
-            <TabButtonsInner>
-                <TabButton active={activeButton === 1}
-                    onClick={() => toggleTab(1)} />
-                <TabButtonSquat active={activeButton === 2}
-                    onClick={() => toggleTab(2)} />
-            </TabButtonsInner>
+            </div>
 
             <Report list={list} />
 
@@ -226,7 +143,6 @@ const HomePage = () => {
                 email={email}
                 target={target}
                 setTarget={setTarget}
-                squat={squat}
             />
 
         </Container >
