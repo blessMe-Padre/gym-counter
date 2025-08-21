@@ -19,11 +19,14 @@ import Report from '../components/Report/Report';
 
 const HomePage = () => {
     const { isAuth, email, id } = useAuth();
+    const [menuActive, setMenuActive] = useState(false); // установка и состояние меню
+    const [isLoading, setLoading] = useState(false); // установка и состояние Spinner
 
     // получает текущий месяц и год в виде цифры
     const currentMonth = new Date().getMonth() + 1;
     const currentYear = new Date().getFullYear();
     const currentMonthYear = `${currentMonth}_${currentYear}`;
+    // const currentMonthYear = `5_2025`;
 
     // получение ссылки к базе данных
     const database = getDatabase(app);
@@ -44,23 +47,21 @@ const HomePage = () => {
         });
     }, [getUserPathTarget]);
 
-    // получение и установка всех повторений за Месяц
-    const [list, setList] = useState([]);
-    
+    // получение и установка всех записей (для отрисовки таблицы статистики)
+    const [tableList, setTableList] = useState([]);
     useEffect(() => {
         onValue(getUserList, (snapshot) => {
             const listsArray = convertToArray(snapshot.val(), month);
-            setList(listsArray);
+            setTableList(listsArray);
         });
     }, []);
 
-    // установка и состояние меню
-    const [menuActive, setMenuActive] = useState(false);
-
-    // установка и состояние Spinner
-    const [isLoading, setLoading] = useState(false);
-
-    // состояние счетчика подтягиваний
+    // получение и установка состояния из записи general (общее количество подтягиваний на текучий месяц)
+    /**
+     * TODO: продумать как можно отказаться от general и использовать только текучий месяц
+     * в % прогрес использовать countMonth
+     * в общем счетчике использовать count (general) (сделать типо ИТОГО ВСЕГО)
+     */
     const [count, setCount] = useState(0);
     useEffect(() => {
         onValue(getUserPath, (snapshot) => {
@@ -69,7 +70,7 @@ const HomePage = () => {
         });
     }, [count]);
 
-    // состояние счетчика подтягиваний на Месяц
+    // состояние счетчика подтягиваний на текущий месяц
     const [countMonth, setCountMonth] = useState();
     useEffect(() => {
         onValue(getUserPathMonth, (snapshot) => {
@@ -77,7 +78,7 @@ const HomePage = () => {
         });
     });
 
-    // установка состояния и отображение % в circle bar первого таба
+    // установка состояния и отображение % в circle bar
     const [percentage, setPercentage] = useState(1);
     const numberCount = Number(count);
 
@@ -137,13 +138,13 @@ const HomePage = () => {
                     <Counter
                         count={count}
                         countMonth={countMonth}
-                        currentMonth={currentMonthYear}
+                        currentMonthYear={currentMonthYear}
                     />
 
                 </TabWrapper>
             </div>
 
-            <Report list={list} />
+            <Report list={tableList} />
 
             <Menu
                 id={id}

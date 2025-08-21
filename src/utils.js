@@ -28,7 +28,6 @@ function convertToArray(obj, month) {
         return {
             id: key, // сохраняем оригинальный ключ
             counter: obj[key].counter,
-            email: obj[key].email,
             month: `${monthName} ${year}` // формат "Июль 2025"
         };
     });

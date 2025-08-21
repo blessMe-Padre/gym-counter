@@ -7,7 +7,11 @@ import { CounterValue } from "./styled/CounterValue";
 import { CounterInner } from "./styled/CounterInner";
 import { CounterForm } from "./styled/CounterForm";
 
-export default function Counter({ count, countMonth, currentMonth }) {
+// count - общее количество подтягиваний полученых из базы данных
+// countMonth - количество подтягиваний на текущий месяц полученых из базы данных
+// currentMonthYear - текущий месяц и год в виде строки "7_2025"
+
+export default function Counter({ count, countMonth, currentMonthYear }) {
     
     const [value, setValue] = useState(0);
     const { id, email } = useAuth();
@@ -24,7 +28,7 @@ export default function Counter({ count, countMonth, currentMonth }) {
                 email: email,
             });
 
-            set(ref(db, 'users/user' + id + '/' + currentMonth), {
+            set(ref(db, 'users/user' + id + '/' + currentMonthYear), {
                 counter: generalCountMonth,
             });
         }
