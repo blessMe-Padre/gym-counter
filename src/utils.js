@@ -1,18 +1,18 @@
 // функция преобразования объекта в массив
 
 const month = [
-    { 1: 'Январь 2024 г' },
-    { 2: 'Февраль 2024 г' },
-    { 3: 'Март 2024 г' },
-    { 4: 'Апрель 2024 г' },
-    { 5: 'Май 2024 г' },
-    { 6: 'Июнь 2024 г' },
-    { 7: 'Июль 2024 г' },
-    { 8: 'Август 2024 г' },
-    { 9: 'Сентябрь 2024 г' },
-    { 10: 'Октябрь 2024 г' },
-    { 11: 'Ноябрь 2024 г' },
-    { 12: 'Декабрь 2024 г' },
+    { 1: 'Январь' },
+    { 2: 'Февраль' },
+    { 3: 'Март' },
+    { 4: 'Апрель' },
+    { 5: 'Май' },
+    { 6: 'Июнь' },
+    { 7: 'Июль' },
+    { 8: 'Август' },
+    { 9: 'Сентябрь' },
+    { 10: 'Октябрь' },
+    { 11: 'Ноябрь' },
+    { 12: 'Декабрь' },
 ];
 
 // функция преобразовывает объект в массив исключая ключи general и target
@@ -21,16 +21,25 @@ function convertToArray(obj, month) {
         return key !== 'general' && key !== 'target';
 
     }).map(function (key) {
-        const monthItem = month.find(item => item.hasOwnProperty(key));
-        const monthName = monthItem ? monthItem[key] : '';
+        // Извлекаем номер месяца и год из ключа вида "7_2025"
+        const [monthNum, year] = key.split('_');
+        const monthItem = month.find(item => item.hasOwnProperty(parseInt(monthNum)));
+        const monthName = monthItem ? monthItem[parseInt(monthNum)] : '';
         return {
-            id: parseInt(key),
+            id: key, // сохраняем оригинальный ключ
             counter: obj[key].counter,
-            squat: obj[key].squat,
             email: obj[key].email,
-            month: monthName
+            month: `${monthName} ${year}` // формат "Июль 2025"
         };
     });
 }
 
-export { convertToArray, month };
+// функция преобразует строку вида "7_2025" в "Июль 2025"
+function convertDateToString(dateString) {
+    const [monthNum, year] = dateString.split('_');
+    const monthItem = month.find(item => item.hasOwnProperty(parseInt(monthNum)));
+    const monthName = monthItem ? monthItem[parseInt(monthNum)] : '';
+    return `${monthName} ${year}`;
+}
+
+export { convertToArray, convertDateToString, month };

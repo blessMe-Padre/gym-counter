@@ -20,8 +20,10 @@ import Report from '../components/Report/Report';
 const HomePage = () => {
     const { isAuth, email, id } = useAuth();
 
-    // получает текущий месяц в виде цифры
+    // получает текущий месяц и год в виде цифры
     const currentMonth = new Date().getMonth() + 1;
+    const currentYear = new Date().getFullYear();
+    const currentMonthYear = `${currentMonth}_${currentYear}`;
 
     // получение ссылки к базе данных
     const database = getDatabase(app);
@@ -29,7 +31,7 @@ const HomePage = () => {
     // получение ссылок к базе данных
     const getUserPath = ref(database, 'users/user' + id + '/general/counter');
     const getUserPathTarget = ref(database, 'users/user' + id + '/target/target');
-    const getUserPathMonth = ref(database, 'users/user' + id + '/' + currentMonth + '/counter');
+    const getUserPathMonth = ref(database, 'users/user' + id + '/' + currentMonthYear + '/counter');
     const getUserList = ref(database, 'users/user' + id + '/');
 
     // получение и установка Цель
@@ -44,6 +46,7 @@ const HomePage = () => {
 
     // получение и установка всех повторений за Месяц
     const [list, setList] = useState([]);
+    
     useEffect(() => {
         onValue(getUserList, (snapshot) => {
             const listsArray = convertToArray(snapshot.val(), month);
@@ -58,13 +61,13 @@ const HomePage = () => {
     const [isLoading, setLoading] = useState(false);
 
     // состояние счетчика подтягиваний
-    const [count, setCount] = useState();
+    const [count, setCount] = useState(0);
     useEffect(() => {
         onValue(getUserPath, (snapshot) => {
             setCount(snapshot.val());
             setLoading(true);
         });
-    });
+    }, [count]);
 
     // состояние счетчика подтягиваний на Месяц
     const [countMonth, setCountMonth] = useState();
@@ -77,13 +80,19 @@ const HomePage = () => {
     // установка состояния и отображение % в circle bar первого таба
     const [percentage, setPercentage] = useState(1);
     const numberCount = Number(count);
+
     useEffect(() => {
         if (percentage === 1) {
             setPercentage(0)
+        } else if (target === 0) {
+            setPercentage(0)
         } else {
-            setPercentage(Math.round(numberCount * 100 / target));
+            const calculatedPercentage = Math.round(numberCount * 100 / target);
+            const validPercentage = isNaN(calculatedPercentage) ? 0 : calculatedPercentage;
+            const clampedPercentage = Math.max(0, Math.min(100, validPercentage));
+            setPercentage(clampedPercentage);
         }
-    }, []);
+    }, [target, numberCount]);
 
     return isAuth ? (
         <Container>
@@ -128,7 +137,7 @@ const HomePage = () => {
                     <Counter
                         count={count}
                         countMonth={countMonth}
-                        currentMonth={currentMonth}
+                        currentMonth={currentMonthYear}
                     />
 
                 </TabWrapper>

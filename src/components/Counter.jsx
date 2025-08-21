@@ -8,6 +8,7 @@ import { CounterInner } from "./styled/CounterInner";
 import { CounterForm } from "./styled/CounterForm";
 
 export default function Counter({ count, countMonth, currentMonth }) {
+    
     const [value, setValue] = useState(0);
     const { id, email } = useAuth();
 
@@ -29,7 +30,6 @@ export default function Counter({ count, countMonth, currentMonth }) {
         }
         writeUserDataPullUp(generalCount, generalCountMonth, email);
         setValue(0);
-
     }
 
 
