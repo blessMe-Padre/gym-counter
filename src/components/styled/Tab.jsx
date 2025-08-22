@@ -28,9 +28,12 @@ export const TabWrapper = styled.div`
     font-size: 24px;
 `;
 
-export const TabTitle = styled.p`
-    text-align: left;
+export const TabTitle = styled.div`
+    width: 100%;
     margin: 10px 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const TabText = styled.p`

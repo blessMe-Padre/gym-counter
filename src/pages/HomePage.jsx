@@ -15,12 +15,13 @@ import { Count } from '../components/styled/Count';
 import { TabText, TabTitle, TabWrapper } from '../components/styled/Tab';
 import Menu from '../components/Menu/Menu';
 import Report from '../components/Report/Report';
+import { Total } from '../components/styled/Total';
 
 
 const HomePage = () => {
     const { isAuth, email, id } = useAuth();
     const [menuActive, setMenuActive] = useState(false); // установка и состояние меню
-    const [isLoading, setLoading] = useState(false); // установка и состояние Spinner
+    const [isLoading, setLoading] = useState(true); // установка и состояние Spinner
 
     // получает текущий месяц и год в виде цифры
     const currentMonth = new Date().getMonth() + 1;
@@ -66,9 +67,9 @@ const HomePage = () => {
     useEffect(() => {
         onValue(getUserPath, (snapshot) => {
             setCount(snapshot.val());
-            setLoading(true);
+            setLoading(false);
         });
-    }, [count]);
+    }, []);
 
     // состояние счетчика подтягиваний на текущий месяц
     const [countMonth, setCountMonth] = useState();
@@ -76,11 +77,11 @@ const HomePage = () => {
         onValue(getUserPathMonth, (snapshot) => {
             setCountMonth(snapshot.val());
         });
-    });
+    }, []);
 
     // установка состояния и отображение % в circle bar
     const [percentage, setPercentage] = useState(1);
-    const numberCount = Number(count);
+    const numberCount = Number(countMonth);
 
     useEffect(() => {
         if (percentage === 1) {
@@ -104,36 +105,42 @@ const HomePage = () => {
                         :
                         <img src="img/gear-white.svg" alt="spinner" />
                     }
-
                 </NavButton>
             </nav>
 
             <div>
                 <TabWrapper>
+                    <TabTitle>
+                        <p>Цель на месяц: </p>
+                    {
+                        isLoading ? <div><img style={{ height: "20px" }} src="img/spinner-2.gif" alt="spinner" /></div>:<div>{target}</div>
+                    }
+                    </TabTitle>
                     <div>
-                        <TabTitle>Цель {target} подтягиваний. Завершено на:</TabTitle>
                         {
-                            isLoading ?
-                                <CircleProgress
-                                    percentage={percentage}
-                                    strokeWidth={12}
-                                    primaryColor={["#013220", "#66ff00"]}
-                                    secondaryColor="#f0f0f0"
-                                />
-                                :
-                                <div style={{ height: "200px", paddingTop: "20px", }}>
-                                    <img style={{ height: "100px", width: "80px" }} src="img/spinner-2.gif" alt="spinner" />
-                                </div>
+                             isLoading ?
+                                 <div style={{ height: "200px", paddingTop: "20px", }}>
+                                     <img style={{ height: "100px", width: "80px" }} src="img/spinner-2.gif" alt="spinner" />
+                                 </div>
+                                 :
+                                 <CircleProgress
+                                     percentage={percentage}
+                                     strokeWidth={12}
+                                     primaryColor={["#013220", "#66ff00"]}
+                                     secondaryColor="#f0f0f0"
+                                 />
                         }
                     </div>
 
-                    <TabText>Общее количество подтягиваний:</TabText>
+                    <TabText>Количество подтягиваний за месяц</TabText>
                     {
-                        isLoading ? <Count>{count}</Count> :
-                            <div style={{ height: "117px" }}>
-                                <img style={{ height: "80px" }} src="img/spinner-2.gif" alt="spinner" />
-                            </div>
-                    }
+                         isLoading ?
+                             <div style={{ height: "117px" }}>
+                                 <img style={{ height: "80px" }} src="img/spinner-2.gif" alt="spinner" />
+                             </div>
+                             :
+                             <Count>{countMonth}</Count>
+                     }
 
                     <Counter
                         count={count}
@@ -143,6 +150,16 @@ const HomePage = () => {
 
                 </TabWrapper>
             </div>
+
+            <Total>
+                <p>Всего подтягиваний </p>
+                {
+                isLoading ?
+                    <div><img style={{ height: "20px" }} src="img/spinner-2.gif" alt="spinner" /></div>
+                :
+                <p>{count}</p>
+                }
+            </Total>
 
             <Report list={tableList} />
 
